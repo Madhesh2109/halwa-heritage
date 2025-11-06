@@ -91,33 +91,62 @@ header .container {
     margin: 0;
 }
 
-nav ul {
+/* Header alignment */
+.header-flex {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-icon {
+    font-size: 1.2rem;
+}
+
+/* New navigation bar below header */
+.main-menu {
+  margin-top: 6px;
+    background: #FFF9F2;
+    position: fixed;
+    width: 100%;
+    top: 70px; /* directly below the main header */
+    z-index: 900;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.main-menu ul {
+    display: flex;
+    justify-content: center;
     list-style: none;
 }
 
-nav ul li {
-    margin-left: 20px;
+.main-menu li {
+    margin: 0 20px;
 }
 
-nav ul li a {
+.main-menu a {
     text-decoration: none;
     color: #5D4037;
-    font-weight: 500;
-    transition: all 0.3s;
-    padding: 8px 12px;
+    padding: 8px 14px;
     border-radius: 20px;
+    transition: 0.3s;
 }
 
-nav ul li a:hover {
-    color: #E67E22;
-    background-color: rgba(230, 126, 34, 0.1);
-}
-
-nav ul li a.active {
-    color: #E67E22;
+.main-menu a:hover,
+.main-menu a.active {
     background-color: rgba(230, 126, 34, 0.15);
-    font-weight: 600;
+    color: #E67E22;
+}
+
+/* Adjust hero position (since menu is fixed) */
+.hero {
+    margin-top: 140px;
 }
 
 .btn-login {
@@ -313,32 +342,6 @@ footer {
     padding: 30px 0;
 }
 
-/* Search Bar Styles */
-.search-bar {
-    display: flex;
-    margin-left: 20px;
-}
-
-#searchInput {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
-    width: 200px;
-}
-
-.search-btn {
-    background: #D2691E;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
-
-.search-btn:hover {
-    background: #A0522D;
-}
-
 /* Back to Top Button */
 .back-to-top {
     position: fixed;
@@ -374,16 +377,6 @@ footer {
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
-
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 10px;
-  }
-
-  nav ul li {
-    margin: 5px;
   }
 
   .search-bar {

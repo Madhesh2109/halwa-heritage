@@ -5,47 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halwa Delights - Home</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Fav-icon -->
+
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
 </head>
+
 <body>
-<main>
+
+    <!-- =========================================
+         HEADER: LOGO + LOGIN + CART
+         ========================================= -->
     <header>
-        <div class="container">
+        <div class="container header-flex">
+
+            <!-- Logo -->
             <div class="logo">
                 <h1>Halwa Delights</h1>
             </div>
 
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search halwa...">
-                <button class="search-btn">🔍</button>
+            <!-- Right Side Buttons -->
+            <div class="header-right">
+                <a href="auth.html" class="btn-login">Login</a>
+
+                <!-- Hidden until login -->
+                <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
+
+                <!-- Cart -->
+                <a id="cart-icon" class="cart-icon" href="cart.html">
+                    🛒 <span class="cart-count">0</span>
+                </a>
             </div>
-
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="auth.html" class="btn-login">Login</a></li>
-                    <li id="logout-btn" style="display:none;"><a href="#" class="btn-logout">Logout</a></li>
-
-                    <!-- Cart icon for adding things -->
-                    <li id="cart-icon" class="cart-icon">
-                        <a href="cart.html">
-                            🛒 <span class="cart-count">0</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </header>
 
+
+    <!-- =========================================
+         MAIN MENU (Home, About, Products, Contact)
+         ========================================= -->
+    <nav class="main-menu">
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- =========================================
+         HERO SECTION
+         ========================================= -->
     <section class="hero">
         <div class="container">
             <div class="header-content">
                 <h2>Authentic Halwa Made with Love</h2>
                 <p>Experience the taste of traditional homemade halwa, crafted with premium ingredients and generations of expertise.</p>
+
                 <div class="hero-buttons">
                     <a href="products.html" class="btn">View Products</a>
                     <a href="about.html" class="btn btn-secondary">Our Story</a>
@@ -54,42 +69,64 @@
         </div>
     </section>
 
+
+    <!-- =========================================
+         SPECIALTIES SECTION
+         ========================================= -->
     <section class="featured">
         <div class="container">
+
             <h2>Our Specialties</h2>
+
             <div class="featured-grid">
-                
+
+                <!-- Wheat Halwa -->
                 <div class="featured-item">
-                    <div class="featured-image"><img src="images/wheat-halwa.jpg" alt="Wheat Halwa" loading="lazy"></div>
+                    <div class="featured-image">
+                        <img src="images/wheat-halwa.jpg" alt="Wheat Halwa" loading="lazy">
+                    </div>
                     <h3>Wheat Halwa</h3>
                     <p>Classic wheat halwa, light and fragrant with cardamom.</p>
                 </div>
-                
+
+                <!-- Carrot Halwa -->
                 <div class="featured-item">
-                    <div class="featured-image"><img src="images/carrot-halwa.jpg" alt="Carrot Halwa" loading="lazy"></div>
+                    <div class="featured-image">
+                        <img src="images/carrot-halwa.jpg" alt="Carrot Halwa" loading="lazy">
+                    </div>
                     <h3>Carrot Halwa</h3>
                     <p>Delicious carrot halwa made with fresh carrots, milk, and nuts.</p>
                 </div>
-                
+
+                <!-- Badam Halwa -->
                 <div class="featured-item">
-                    <div class="featured-image"><img src="images/badam-halwa.png" alt="Badam Halwa" loading="lazy"></div>
+                    <div class="featured-image">
+                        <img src="images/badam-halwa.png" alt="Badam Halwa" loading="lazy">
+                    </div>
                     <h3>Badam Halwa</h3>
                     <p>Rich almond halwa made with premium almonds and saffron.</p>
                 </div>
+
             </div>
         </div>
     </section>
 
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
     <footer>
         <div class="container">
             <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
         </div>
     </footer>
 
-    <button class="back-to-top" id="backToTop">↑</button>
-    
-    <script src="./js/cart.js"></script>
-    <script src="./js/script.js"></script>
-</main>
+    <!-- Back to top -->
+    <button id="backToTop" class="back-to-top">↑</button>
+
+    <!-- JS Files -->
+    <script src="js/cart.js"></script>
+    <script src="js/script.js"></script>
+
 </body>
 </html>

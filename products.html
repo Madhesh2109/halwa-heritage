@@ -11,29 +11,45 @@
 </head>
 <body>
 <main>
+
+    <!-- =========================================
+         HEADER: LOGO + LOGIN + CART
+         ========================================= -->
     <header>
-        <div class="container">
+        <div class="container header-flex">
+
+            <!-- Logo -->
             <div class="logo">
                 <h1>Halwa Delights</h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="products.html" class="active">Products</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="auth.html" class="btn-login">Login</a></li>
-                    <li id="logout-btn" style="display:none;"><a href="#" class="btn-logout">Logout</a></li>
-                    <!-- Cart icon for adding things -->
-                    <li id="cart-icon" class="cart-icon">
-                        <a href="cart.html">
-                            🛒 <span class="cart-count">0</span>
-                        </a>
-                    </li> 
-                </ul>
-            </nav>
+
+            <!-- Right Side Buttons -->
+            <div class="header-right">
+                <a href="auth.html" class="btn-login">Login</a>
+
+                <!-- Hidden until login -->
+                <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
+
+                <!-- Cart -->
+                <a id="cart-icon" class="cart-icon" href="cart.html">
+                    🛒 <span class="cart-count">0</span>
+                </a>
+            </div>
         </div>
     </header>
+
+
+    <!-- =========================================
+         MAIN MENU (Home, About, Products, Contact)
+         ========================================= -->
+    <nav class="main-menu">
+        <ul>
+            <li><a href="index.html" >Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html" class="active">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
     <section class="page-hero">
         <div class="container">

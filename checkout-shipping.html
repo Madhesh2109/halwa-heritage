@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Information - Halwa Delights</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
+</head>
+<body>
+<main>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Halwa Delights</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="auth.html" class="btn-login">Login</a></li>
+                    <li id="logout-btn" style="display:none;">
+                        <a href="#" class="btn-logout">Logout</a>
+                    </li>
+                    <li id="cart-icon" class="cart-icon">
+                        <a href="cart.html">
+                            🛒 <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Checkout</h1>
+            <p>Complete your order</p>
+        </div>
+    </section>
+
+    <section class="checkout-section">
+        <div class="container">
+            <div class="checkout-steps">
+                <div class="step completed">
+                    <span class="step-number">1</span>
+                    <span class="step-text">Cart</span>
+                </div>
+                <div class="step active">
+                    <span class="step-number">2</span>
+                    <span class="step-text">Information</span>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <span class="step-text">Payment</span>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <span class="step-text">Confirmation</span>
+                </div>
+            </div>
+
+            <div class="checkout-content">
+                <div class="checkout-forms">
+                    <!-- Shipping Information -->
+                    <form id="shipping-form" class="checkout-form">
+                        <h3>Shipping Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name *</label>
+                                <input type="text" id="first-name" name="first-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name *</label>
+                                <input type="text" id="last-name" name="last-name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Mobile Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Street Address *</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pincode">PIN Code *</label>
+                                <input type="text" id="pincode" name="pincode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country *</label>
+                                <select id="country" name="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="India" selected>India</option>
+                                    <option value="USA">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="Canada">Canada</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="save-address">
+                                <span class="checkmark"></span>
+                                Save this address for future orders
+                            </label>
+                        </div>
+                    </form>
+
+                    <!-- Coupon Code -->
+                    <div class="checkout-form">
+                        <h3>Apply Coupon</h3>
+                        <div class="coupon-section">
+                            <div class="form-group">
+                                <label for="coupon-code">Coupon Code</label>
+                                <div class="coupon-input">
+                                    <input type="text" id="coupon-code" name="coupon-code" placeholder="Enter coupon code">
+                                    <button type="button" id="apply-coupon" class="btn-coupon">Apply</button>
+                                </div>
+                            </div>
+                            <div id="coupon-message" class="coupon-message"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    
+                    <div id="order-items" class="order-items">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                    
+                    <div class="order-totals">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="summary-subtotal">Rs.0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping:</span>
+                            <span>Rs.50</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Discount:</span>
+                            <span id="summary-discount">-Rs.0</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Total:</span>
+                            <span id="summary-total">Rs.50</span>
+                        </div>
+                    </div>
+
+                    <div class="checkout-actions">
+                        <a href="cart.html" class="btn btn-back">← Back to Cart</a>
+                        <button type="button" id="continue-to-payment" class="btn btn-primary">
+                            Continue to Payment
+                        </button>
+                    </div>
+
+                    <div class="security-notice">
+                        <p>🔒 Your information is secure and protected</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">↑</button>
+    
+    <script src="./js/script.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/checkout.js"></script>
+</main>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Halwa Delights</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/contact.css">
+    <!-- Fav-icon -->
+    <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
+</head>
+<body>
+<main>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Halwa Delights</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="auth.html" class="btn-login">Login</a></li>
+                    <li id="logout-btn" style="display:none;"><a href="#" class="btn-logout">Logout</a></li>
+                    <!-- Cart icon for adding things -->
+                    <li id="cart-icon" class="cart-icon">
+                        <a href="cart.html">
+                            🛒 <span class="cart-count">0</span>
+                        </a>
+                    </li> 
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you</p>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Visit Our Shop</h3>
+                    <p>Gopal Swami Kovil Street<br>Palayamkottai, Tirunelveli - 627002</p>
+                    <p>Phone: (+91) 7871053548</p>
+                    <p>Email: halwa-kadai@gmail.com</p>
+                    
+                    <h3>Business Hours</h3>
+                    <p>Monday - Saturday: 9am - 8pm<br>Sunday: 10am - 6pm</p>
+                    
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Twitter</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="tel" placeholder="Your Phone">
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">↑</button>
+    
+    <script src="./js/script.js"></script>
+    <script src="./js/cart.js"></script>
+    <script src="./js/contact.js"></script>
+</main>
+</body>
+</html>

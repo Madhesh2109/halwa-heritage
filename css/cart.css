@@ -1,0 +1,156 @@
+/* ============================
+   Cart Page Styles - Cleaned
+   ============================ */
+
+.cart-section {
+  padding: 80px 0;
+  background: linear-gradient(to bottom, #FFF9F2, white);
+}
+
+.cart-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.cart-item-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-item-img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details h3 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: #C45C1A;
+}
+
+.cart-item-details p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.quantity-btn {
+  background: #E67E22;
+  color: #fff;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.quantity-btn:hover {
+  background: #C45C1A;
+}
+
+.quantity-input {
+  width: 45px;
+  text-align: center;
+  border: 1px solid rgba(230, 126, 34, 0.4);
+  border-radius: 6px;
+  padding: 4px;
+  vertical-align: middle;
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.remove-item:hover {
+  transform: scale(1.2);
+}
+
+.cart-summary {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  text-align: right;
+}
+
+.cart-summary h3 {
+  color: #C45C1A;
+  margin-bottom: 10px;
+}
+
+.cart-summary p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+#checkout-btn {
+  margin-top: 20px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#checkout-btn:hover {
+  background: #219150;
+}
+
+/* Empty cart message */
+.cart-empty {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+  font-size: 1.1rem;
+}
+
+/* Toast notification */
+.toast-message {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  opacity: 0.9;
+  z-index: 1000;
+}

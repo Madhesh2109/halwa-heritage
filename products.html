@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - Halwa Delights</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/products.css">
+    <!-- Fav-icon -->
+    <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
+</head>
+<body>
+<main>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Halwa Delights</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="auth.html" class="btn-login">Login</a></li>
+                    <li id="logout-btn" style="display:none;"><a href="#" class="btn-logout">Logout</a></li>
+                    <!-- Cart icon for adding things -->
+                    <li id="cart-icon" class="cart-icon">
+                        <a href="cart.html">
+                            🛒 <span class="cart-count">0</span>
+                        </a>
+                    </li> 
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Halwa Varieties</h1>
+            <p>Discover our delicious range of traditional halwa</p>
+        </div>
+    </section>
+
+    <section class="products">
+        <div class="container">
+            <section class="product-filters">
+                <div class="container">
+                    <div class="filter-options">
+                        <select id="categoryFilter">
+                            <option value="all">All Categories</option>
+                            <option value="premium">Premium</option>
+                            <option value="traditional">Traditional</option>
+                            <option value="budget">Budget Friendly</option>
+                        </select>
+                        
+                        <select id="priceFilter">
+                            <option value="all">All Prices</option>
+                            <option value="low">Under ₹400</option>
+                            <option value="medium">₹400 - ₹600</option>
+                            <option value="high">Above ₹600</option>
+                        </select>
+                        
+                        <button class="btn btn-secondary" id="resetFilters">Reset Filters</button>
+                    </div>
+                </div>
+            </section>
+            <div id="loadingMessage" style="text-align:center; display:none;">Loading the products...</div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image"><img src="images/carrot-halwa.jpg" alt="Carrot Halwa" loading="lazy"></div>
+                    <h3>Carrot Halwa</h3>
+                    <p>Delicious carrot halwa made with fresh carrots, milk, and nuts.</p>
+                    <span class="price">Rs.800/kg</span>
+                    <button class="add-to-cart-btn" data-id="1">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="images/wheat-halwa.jpg" alt="Wheat Halwa" loading="lazy"></div>
+                    <h3>Wheat Halwa</h3>
+                    <p>Classic wheat halwa, light and fragrant with cardamom.</p>
+                    <span class="price">Rs.410/kg</span>
+                    <button class="add-to-cart-btn" data-id="1">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="images/badam-halwa.png" alt="Badam Halwa" loading="lazy"></div>
+                    <h3>Badam Halwa</h3>
+                    <p>Rich almond halwa made with premium almonds and saffron.</p>
+                    <span class="price">Rs.700/kg</span>
+                    <button class="add-to-cart-btn" data-id="1">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="images/moongdal-halwa.png" alt="Moong Dal Halwa" loading="lazy"></div>
+                    <h3>Moong Dal Halwa</h3>
+                    <p>Traditional lentil halwa, rich and melt-in-your-mouth.</p>
+                    <span class="price">Rs.300/kg</span>
+                    <button class="add-to-cart-btn" data-id="1">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="images/fruit-halwa.png" alt="Fruit Halwa" loading="lazy"></div>
+                    <h3>Fruit Halwa</h3>
+                    <p>Dry fruits halwa, nutritious and delicious.</p>
+                    <span class="price">Rs.300/kg</span>
+                    <button class="add-to-cart-btn" data-id="1">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <div class="product-image"><img src="images/muscoth-halwa.png" alt="Muscoth Halwa" loading="lazy"></div>
+                    <h3>Muscoth Halwa</h3>
+                    <p>Muscoth halwa, light and healthy.</p>
+                    <span class="price">Rs.450/kg</span>
+                    <button class="add-to-cart-btn" data-id="1">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">↑</button>
+    
+    <script src="./js/script.js"></script>
+    <script src="./js/products.js"></script>
+    <script src="./js/cart.js"></script>
+</main>
+</body>
+</html>

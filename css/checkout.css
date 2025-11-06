@@ -1,0 +1,160 @@
+/* ================================
+   Checkout Page Styles - Cleaned
+   ================================ */
+
+.checkout-section {
+  padding: 80px 0;
+  background: linear-gradient(to bottom, #FFF9F2, white);
+}
+
+.checkout-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.checkout-form,
+.order-summary {
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-form h3,
+.order-summary h3 {
+  color: #C45C1A;
+  margin-bottom: 20px;
+}
+
+.checkout-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.checkout-form label {
+  font-weight: 500;
+  color: #333;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  padding: 10px;
+  border: 1px solid rgba(230, 126, 34, 0.3);
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  transition: border-color 0.2s;
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus {
+  border-color: #E67E22;
+  outline: none;
+}
+
+/* Order Summary */
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.summary-total {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  font-weight: 600;
+}
+
+/* Coupon Section */
+.coupon-section {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coupon-section input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid rgba(230, 126, 34, 0.3);
+  border-radius: 8px;
+}
+
+.coupon-section button {
+  background: #E67E22;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.coupon-section button:hover {
+  background: #C45C1A;
+}
+
+/* Inline coupon feedback */
+.coupon-feedback {
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Toast notification */
+.toast-message {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  opacity: 0.9;
+  z-index: 1000;
+}
+
+/* Place Order Button */
+#place-order-btn {
+  margin-top: 20px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#place-order-btn:hover {
+  background: #219150;
+}
+
+/* ================================
+   Shipping Form Field Errors
+   ================================ */
+.field-error {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 5px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Optional smooth fade animation (shared with confirmation) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

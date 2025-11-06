@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Halwa Delights</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <!-- Fav-icon -->
+    <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
+</head>
+
+<body>
+<main>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Halwa Delights</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="auth.html" class="btn-login">Login</a></li>
+                    <li id="logout-btn" style="display:none;">
+                        <a href="#" class="btn-logout">Logout</a>
+                    </li>
+                    <li id="cart-icon" class="cart-icon">
+                        <a href="cart.html">
+                            🛒 <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Shopping Cart</h1>
+            <p>Review your halwa selections</p>
+        </div>
+    </section>
+
+    <section class="cart-section">
+        <div class="container">
+            <div id="cart-content" class="ecommerce-features">
+                <!-- Cart items will be loaded here by JavaScript -->
+                <div class="cart-items" id="cart-items-container">
+                    <!-- Dynamic content -->
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">Rs.0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery:</span>
+                        <span>Rs.50</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span id="cart-total">Rs.50</span>
+                    </div>
+                    <a href="checkout.html" class="btn btn-full" style="margin-top: 20px;">Proceed to Checkout</a>
+                </div>
+            </div>
+            
+            <div id="empty-cart-message" style="display: none; text-align: center; padding: 60px 0;">
+                <h3>Your cart is empty</h3>
+                <p>Add some delicious halwa to your cart!</p>
+                <a href="products.html" class="btn">Browse Products</a>
+            </div>
+            
+            <div id="login-required-message" style="display: none; text-align: center; padding: 60px 0;">
+                <h3>Please Login</h3>
+                <p>You need to be logged in to view your cart.</p>
+                <a href="auth.html" class="btn">Login</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">↑</button>
+    
+    <script src="./js/script.js"></script>
+    <script src="./js/cart.js"></script>
+</main>
+</body>
+</html> 

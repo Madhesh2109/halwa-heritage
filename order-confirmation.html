@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Halwa Delights</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/confirmation.css">
+    <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
+</head>
+<body>
+<main>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Halwa Delights</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="auth.html" class="btn-login">Login</a></li>
+                    <li id="logout-btn" style="display:none;">
+                        <a href="#" class="btn-logout">Logout</a>
+                    </li>
+                    <li id="cart-icon" class="cart-icon">
+                        <a href="cart.html">
+                            🛒 <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Order Confirmation</h1>
+            <p>Thank you for your order!</p>
+        </div>
+    </section>
+
+    <section class="confirmation-section">
+        <div class="container">
+            <div class="confirmation-steps">
+                <div class="step completed">
+                    <span class="step-number">1</span>
+                    <span class="step-text">Cart</span>
+                </div>
+                <div class="step completed">
+                    <span class="step-number">2</span>
+                    <span class="step-text">Information</span>
+                </div>
+                <div class="step completed">
+                    <span class="step-number">3</span>
+                    <span class="step-text">Payment</span>
+                </div>
+                <div class="step active">
+                    <span class="step-number">4</span>
+                    <span class="step-text">Confirmation</span>
+                </div>
+            </div>
+
+            <div class="confirmation-content">
+                <div class="confirmation-card">
+                    <div class="confirmation-header success">
+                        <div class="confirmation-icon">✅</div>
+                        <h2>Order Confirmed!</h2>
+                        <p>Thank you for your purchase. Your order has been received.</p>
+                    </div>
+
+                    <div class="order-details">
+                        <div class="detail-row">
+                            <span>Order Number:</span>
+                            <strong id="order-number">ORD123456</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Order Date:</span>
+                            <span id="order-date">January 1, 2024</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Total Amount:</span>
+                            <strong id="order-total">Rs.0</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Payment Method:</span>
+                            <span id="payment-method">Google Pay</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Payment Status:</span>
+                            <span id="payment-status" class="status-paid">Paid</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Order Status:</span>
+                            <span id="order-status" class="status-confirmed">Confirmed</span>
+                        </div>
+                    </div>
+
+                    <div class="shipping-info">
+                        <h3>Shipping Information</h3>
+                        <div class="address-card">
+                            <div id="shipping-address">
+                                <!-- Shipping address will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-items-summary">
+                        <h3>Order Items</h3>
+                        <div id="confirmation-items" class="confirmation-items">
+                            <!-- Order items will be loaded here -->
+                        </div>
+                        
+                        <div class="order-summary-totals">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="confirmation-subtotal">Rs.0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Shipping:</span>
+                                <span>Rs.50</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Discount:</span>
+                                <span id="confirmation-discount">-Rs.0</span>
+                            </div>
+                            <div class="summary-row total-row">
+                                <span>Total:</span>
+                                <span id="confirmation-total">Rs.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="next-steps">
+                        <h3>What's Next?</h3>
+                        <div class="steps-timeline">
+                            <div class="timeline-step current">
+                                <div class="step-indicator"></div>
+                                <div class="step-content">
+                                    <strong>Order Confirmed</strong>
+                                    <p>We've received your order</p>
+                                    <small>Just now</small>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-indicator"></div>
+                                <div class="step-content">
+                                    <strong>Processing</strong>
+                                    <p>We're preparing your order</p>
+                                    <small>Expected: Today</small>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-indicator"></div>
+                                <div class="step-content">
+                                    <strong>Shipped</strong>
+                                    <p>Your order is on the way</p>
+                                    <small>Expected: Tomorrow</small>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-indicator"></div>
+                                <div class="step-content">
+                                    <strong>Delivered</strong>
+                                    <p>Your order has been delivered</p>
+                                    <small>Expected: 2-3 days</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="confirmation-actions">
+                        <a href="products.html" class="btn btn-secondary">Continue Shopping</a>
+                        <a href="index.html" class="btn btn-primary">Back to Home</a>
+                        <button id="print-order" class="btn btn-outline">Print Order</button>
+                    </div>
+
+                    <div class="support-info">
+                        <p>Need help? Contact our support team at <strong>support@halwadelights.com</strong> or call <strong>+91-9876543210</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">↑</button>
+    
+    <script src="./js/script.js"></script>
+    <script src="./js/order-confirmation.js"></script>
+</main>
+</body>
+</html>

@@ -1,5 +1,5 @@
 // ============================
-// CART.JS – Django API Version
+// CART.JS – Firebase Ready + Matches Your HTML
 // ============================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -7,63 +7,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalElement = document.getElementById("cart-total");
   const cartCount = document.querySelector(".cart-count");
   const checkoutBtn = document.getElementById("checkout-btn");
-  const emptyMessage = document.getElementById("cart-empty-message");
+  const emptyMessage = document.getElementById("empty-cart-message"); // ✅ your existing message
+  const loginMessage = document.getElementById("login-required-message");
 
-  let cart = [];
-
-  // ============================
-  // 🧠 Fetch Cart Data from API
-  // ============================
-  async function fetchCart() {
-    try {
-      const res = await fetch("/api/cart/");
-      if (!res.ok) throw new Error("Failed to load cart");
-      cart = await res.json();
-      renderCart();
-    } catch (err) {
-      console.error(err);
-      showToast("Unable to load your cart. Please try again later.");
-    }
-  }
-
-  // ============================
-  // 🧠 Save Cart Changes to API
-  // ============================
-  async function updateCartItem(productId, quantity) {
-    try {
-      const res = await fetch(`/api/cart/${productId}/`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ quantity }),
-      });
-      if (!res.ok) throw new Error("Failed to update cart");
-      await fetchCart(); // refresh UI after update
-    } catch (err) {
-      console.error(err);
-      showToast("Unable to update item. Try again.");
-    }
-  }
-
-  async function removeCartItem(productId) {
-    try {
-      const res = await fetch(`/api/cart/${productId}/`, { method: "DELETE" });
-      if (!res.ok) throw new Error("Failed to remove item");
-      await fetchCart();
-    } catch (err) {
-      console.error(err);
-      showToast("Unable to remove item.");
-    }
-  }
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
   // ============================
   // 🧱 Render Cart Items
   // ============================
   function renderCart() {
-    if (!cart || cart.length === 0) {
+    if (cart.length === 0) {
       cartContainer.innerHTML = "";
       emptyMessage.style.display = "block";
+      if (loginMessage) loginMessage.style.display = "none";
       totalElement.textContent = "₹0";
-      cartCount.textContent = "0";
+      if (cartCount) cartCount.textContent = "0";
       return;
     }
 
@@ -78,13 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3>${item.name}</h3>
             <p>₹${item.price}/kg</p>
             <div class="quantity-control">
-              <button class="quantity-btn decrease" data-id="${item.id}" data-index="${index}">-</button>
+              <button class="quantity-btn decrease" data-index="${index}">-</button>
               <input type="number" class="quantity-input" value="${item.quantity}" min="1" readonly>
-              <button class="quantity-btn increase" data-id="${item.id}" data-index="${index}">+</button>
+              <button class="quantity-btn increase" data-index="${index}">+</button>
             </div>
           </div>
         </div>
-        <button class="remove-item" data-id="${item.id}" data-index="${index}">✕</button>
+        <button class="remove-item" data-index="${index}">✕</button>
       </div>
     `
       )
@@ -104,45 +62,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateCartCount() {
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCount.textContent = count;
+    if (cartCount) cartCount.textContent = count;
   }
 
   // ============================
   // 🗑️ Remove / Update Quantity
   // ============================
-  let quantityTimer;
-  function changeQuantity(productId, index, delta) {
-    clearTimeout(quantityTimer);
-    quantityTimer = setTimeout(() => {
-      const newQty = cart[index].quantity + delta;
-      if (newQty < 1) return;
-      updateCartItem(productId, newQty);
-    }, 200);
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  function changeQuantity(index, delta) {
+    const newQty = cart[index].quantity + delta;
+    if (newQty < 1) return;
+    cart[index].quantity = newQty;
+    saveCart();
+    renderCart();
+  }
+
+  function removeCartItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    renderCart();
   }
 
   // ============================
   // ⚡ Event Delegation
   // ============================
   cartContainer.addEventListener("click", (e) => {
-    const productId = e.target.dataset.id;
     const index = e.target.dataset.index;
-
-    if (e.target.classList.contains("remove-item")) {
-      removeCartItem(productId);
-    }
-    if (e.target.classList.contains("increase")) {
-      changeQuantity(productId, index, 1);
-    }
-    if (e.target.classList.contains("decrease")) {
-      changeQuantity(productId, index, -1);
-    }
+    if (e.target.classList.contains("remove-item")) removeCartItem(index);
+    if (e.target.classList.contains("increase")) changeQuantity(index, 1);
+    if (e.target.classList.contains("decrease")) changeQuantity(index, -1);
   });
 
   // ============================
   // 🧾 Checkout Navigation
   // ============================
-  checkoutBtn?.addEventListener("click", () => {
-    if (!cart || cart.length === 0) {
+  checkoutBtn.addEventListener("click", () => {
+    if (cart.length === 0) {
       showToast("Your cart is empty!");
     } else {
       window.location.href = "checkout.html";
@@ -160,6 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => toast.remove(), 2000);
   }
 
-  // Initial cart fetch
-  fetchCart();
+  // ============================
+  // 🧩 Initialize Cart
+  // ============================
+  renderCart();
 });

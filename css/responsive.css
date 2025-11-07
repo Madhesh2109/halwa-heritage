@@ -1,0 +1,320 @@
+/* =========================================
+   RESPONSIVE DESIGN SYSTEM – HALWA KADAI
+   Author: Madhesh G
+   Description: Centralized responsive layout
+   covering all pages (Home, Products, Cart,
+   Checkout, Confirmation, Contact, Auth, About)
+   ========================================= */
+
+/* ===========================
+   TABLET & MOBILE  (<= 768px)
+   =========================== */
+@media (max-width: 768px)
+{
+
+  /* ===========================
+     🧭 HEADER & NAVIGATION
+     =========================== */
+  header .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .search-bar {
+    margin: 10px 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #searchInput {
+    width: 100%;
+  }
+
+  /* ===========================
+     🎯 HERO & PAGE HERO SECTIONS
+     =========================== */
+  .hero {
+    height: auto;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .header-content h2 {
+    font-size: 2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-hero {
+    padding: 60px 0 30px;
+  }
+
+  /* ===========================
+     ⚙️ GLOBAL LAYOUT ADJUSTMENTS
+     =========================== */
+  .container {
+    width: 95%;
+    padding: 0 10px;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-item {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  /* ===========================
+     🧍 ABOUT & CONTACT PAGES
+     =========================== */
+  .about-grid,
+  .contact-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .about-image img,
+  .contact-info,
+  .contact-form {
+    width: 100%;
+    height: auto;
+  }
+
+  .contact {
+    padding: 40px 0;
+  }
+
+  /* ===========================
+     🛍️ PRODUCT PAGE
+     =========================== */
+  .filter-options {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .product-card {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  /* ===========================
+     🛒 CART PAGE
+     =========================== */
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-item-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .cart-summary {
+    text-align: center;
+    padding: 15px;
+  }
+
+  #checkout-btn {
+    width: 100%;
+  }
+
+  /* ===========================
+     📦 CHECKOUT PAGE
+     =========================== */
+  .checkout-container {
+    flex-direction: column;
+  }
+
+  .coupon-section {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .coupon-section input,
+  .coupon-section button {
+    width: 100%;
+  }
+
+  #place-order-btn {
+    width: 100%;
+  }
+
+  /* ===========================
+     🚚 SHIPPING & CONFIRMATION
+     =========================== */
+  #shipping-form,
+  .shipping-info,
+  .confirmation-steps {
+    width: 100%;
+  }
+
+  .confirmation-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .confirmation-steps::before {
+    left: 5%;
+    right: 5%;
+  }
+
+  .confirmation-steps .step {
+    max-width: 80px;
+  }
+
+  .confirmation-header {
+    padding: 30px 20px;
+  }
+
+  .confirmation-header h2 {
+    font-size: 1.5em;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .confirmation-actions {
+    flex-direction: column;
+  }
+
+  .steps-timeline {
+    padding-left: 20px;
+  }
+
+  .step-indicator {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+  }
+
+  /* ===========================
+     🔐 AUTH (LOGIN / REGISTER)
+     =========================== */
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-image-container {
+    order: -1;
+    background: #ffe9c7;
+  }
+
+  .auth-form-container {
+    padding: 40px 30px;
+  }
+
+  /* ===========================
+     🦶 FOOTER & UTILITIES
+     =========================== */
+  footer {
+    padding: 20px 10px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+
+  /* ===== Show hamburger only on small screens ===== */
+  .menu-toggle {
+    display: block;
+    margin-left: 10px;
+  }
+
+  .main-menu {
+    display: none;
+  }
+
+  header .container {
+    justify-content: space-between;
+  }
+
+  .header-right {
+    gap: 10px;
+  }
+}
+
+/* ===========================
+   SMALL DEVICES  (<= 480px)
+   =========================== */
+@media (max-width: 480px) {
+
+  /* 🔤 Global Font Scaling */
+  body {
+    font-size: 14px;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.2em;
+  }
+
+  /* 🎯 Hero Adjustments */
+  .hero {
+    padding: 40px 15px;
+  }
+
+  /* 🛍️ Product Cards */
+  .product-card {
+    max-width: 90%;
+  }
+
+  /* 📦 Checkout Summary */
+  .confirmation-card,
+  .checkout-summary {
+    padding: 20px;
+  }
+
+  /* 💬 Modals */
+  .modal-content {
+    width: 90% !important;
+  }
+
+  /* 🔘 Buttons */
+  .btn, .btn-full {
+    width: 100%;
+  }
+
+  /* 🛒 Cart Fine-Tuning */
+  .cart-item-details h3 {
+    font-size: 1rem;
+  }
+
+  .quantity-control {
+    gap: 5px;
+  }
+
+  .quantity-btn {
+    width: 26px;
+    height: 26px;
+  }
+
+  .quantity-input {
+    width: 40px;
+  }
+}

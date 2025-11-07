@@ -79,7 +79,7 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 8px 0;
 }
 
 .logo h1 {
@@ -110,11 +110,11 @@ header .container {
 
 /* New navigation bar below header */
 .main-menu {
-  margin-top: 6px;
-    background: #FFF9F2;
+  margin-top: 4px;
+    background: linear-gradient(to right, #FFF9F2, #FFEBD6);
     position: fixed;
     width: 100%;
-    top: 70px; /* directly below the main header */
+    top: 58px; /* directly below the main header */
     z-index: 900;
     padding: 10px 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -152,7 +152,7 @@ header .container {
 .btn-login {
     background: linear-gradient(135deg, #E67E22, #D35400);
     color: white !important;
-    padding: 8px 16px;
+    padding: 4px 16px;
     border-radius: 20px;
 }
 
@@ -363,251 +363,109 @@ footer {
     background: #A0522D;
 }
 
-/* =========================================
-   GLOBAL MOBILE RESPONSIVE DESIGN
-   Covers all pages: Home, Products, Cart,
-   Checkout, Confirmation, Contact, Auth, About
-   ========================================= */
+/* ===== Enhanced Sidebar with Overlay (Polished Mobile Look) ===== */
 
-/* === Tablet and Mobile (<= 768px) === */
-@media (max-width: 768px) {
-
-  /* ----- Global Header & Navigation ----- */
-  header .container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .search-bar {
-    margin: 10px 0;
-    width: 100%;
-    justify-content: center;
-  }
-
-  #searchInput {
-    width: 100%;
-  }
-
-  /* ----- Hero & Page Hero ----- */
-  .hero {
-    height: auto;
-    padding: 60px 20px;
-  }
-
-  .header-content h2 {
-    font-size: 2rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .page-hero {
-    padding: 60px 0 30px;
-  }
-
-  /* ----- Global Layout Adjustments ----- */
-  .container {
-    width: 95%;
-  }
-
-  .featured-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .featured-item {
-    max-width: 90%;
-    margin: 0 auto;
-  }
-
-  /* ----- About & Contact ----- */
-  .about-grid,
-  .contact-content {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .about-image img,
-  .contact-info,
-  .contact-form {
-    width: 100%;
-    height: auto;
-  }
-
-  .contact {
-    padding: 40px 0;
-  }
-
-  /* ----- Product Page ----- */
-  .filter-options {
-    flex-direction: column;
-    gap: 10px;
-    align-items: stretch;
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-
-  .product-card {
-    margin: 0 auto;
-    max-width: 320px;
-  }
-
-  /* ----- Cart Page ----- */
-  .cart-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .cart-item-info {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .cart-item img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-  }
-
-  .cart-summary {
-    text-align: center;
-    padding: 15px;
-  }
-
-  #checkout-btn {
-    width: 100%;
-  }
-
-  /* ----- Checkout Page ----- */
-  .checkout-container {
-    flex-direction: column;
-  }
-
-  .coupon-section {
-    flex-direction: column;
-  }
-
-  .coupon-section input,
-  .coupon-section button {
-    width: 100%;
-  }
-
-  #place-order-btn {
-    width: 100%;
-  }
-
-  /* ----- Checkout Shipping ----- */
-  #shipping-form,
-  .shipping-info,
-  .confirmation-steps {
-    width: 100%;
-  }
-
-  .confirmation-steps {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .confirmation-steps::before {
-    left: 5%;
-    right: 5%;
-  }
-
-  .confirmation-steps .step {
-    max-width: 80px;
-  }
-
-  /* ----- Confirmation Page ----- */
-  .confirmation-header {
-    padding: 30px 20px;
-  }
-
-  .confirmation-header h2 {
-    font-size: 1.5em;
-  }
-
-  .detail-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-  }
-
-  .confirmation-actions {
-    flex-direction: column;
-  }
-
-  .steps-timeline {
-    padding-left: 20px;
-  }
-
-  .step-indicator {
-    width: 20px;
-    height: 20px;
-    margin-right: 15px;
-  }
-
-  /* ----- Auth Pages (Login/Register) ----- */
-  .auth-container {
-    flex-direction: column;
-  }
-
-  .auth-image-container {
-    order: -1;
-    background: #ffe9c7;
-  }
-
-  .auth-form-container {
-    padding: 40px 30px;
-  }
-
-  /* ----- Footer ----- */
-  footer {
-    padding: 20px 10px;
-    font-size: 0.9rem;
-  }
-
-  /* ----- Back to Top Button ----- */
-  .back-to-top {
-    bottom: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-  }
+/* Hamburger menu button */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #C45C1A;
+  padding: 4px 10px;
+  transition: 0.3s;
 }
 
-/* === Small Devices (<= 480px) === */
-@media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
+.menu-toggle:hover {
+  color: #E67E22;
+}
 
-  h1, h2, h3 {
-    font-size: 1.2em;
-  }
+/* Sidebar Drawer */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 240px;
+  height: 100%;
+  background: linear-gradient(135deg, #FFF9F2, #FFEBD6);
+  box-shadow: 3px 0 12px rgba(0,0,0,0.15);
+  transition: left 0.35s ease;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  padding: 70px 20px 20px;
+  border-right: 2px solid rgba(230, 126, 34, 0.1);
+}
 
-  .hero {
-    padding: 40px 15px;
-  }
+.sidebar.active {
+  left: 0;
+}
 
-  .product-card {
-    max-width: 90%;
-  }
+/* Sidebar Menu Items */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
 
-  .confirmation-card,
-  .checkout-summary {
-    padding: 20px;
-  }
+.sidebar li {
+  text-align: left;
+}
 
-  .modal-content {
-    width: 90% !important;
-  }
+.sidebar a {
+  text-decoration: none;
+  color: #5D4037;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: block;
+  padding: 10px 0;
+  border-radius: 5px;
+  transition: 0.3s;
+}
 
-  .btn, .btn-full {
-    width: 100%;
-  }
+.sidebar a:hover,
+.sidebar a.active {
+  color: #E67E22;
+  padding-left: 5px;
+}
+
+/* Close Button (×) */
+.close-sidebar {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #C45C1A;
+  transition: 0.3s;
+}
+
+.close-sidebar:hover {
+  color: #E67E22;
+}
+
+/* Dimmed background overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px); /* adds smooth blur effect */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1100;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }

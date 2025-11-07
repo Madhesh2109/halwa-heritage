@@ -6,6 +6,7 @@
     <title>Shopping Cart - Halwa Delights</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="./css/responsive.css">
     <!-- Fav-icon -->
     <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
 </head>
@@ -61,29 +62,19 @@
 
     <section class="cart-section">
         <div class="container">
+            
             <div id="cart-content" class="ecommerce-features">
-                <!-- Cart items will be loaded here by JavaScript -->
-                <div class="cart-items" id="cart-items-container">
-                    <!-- Dynamic content -->
+                <h2>Your Shopping Cart</h2>
+                <div id="cart-items-container" class="cart-items">
+                    <!-- Dynamic cart items go here -->
                 </div>
                 
                 <div class="cart-summary">
-                    <div class="summary-row">
-                        <span>Subtotal:</span>
-                        <span id="cart-subtotal">Rs.0</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Delivery:</span>
-                        <span>Rs.50</span>
-                    </div>
-                    <div class="summary-row summary-total">
-                        <span>Total:</span>
-                        <span id="cart-total">Rs.50</span>
-                    </div>
-                    <a href="checkout.html" class="btn btn-full" style="margin-top: 20px;">Proceed to Checkout</a>
+                    <h3>Total: <span id="cart-total">₹0</span></h3>
+                    <button id="checkout-btn" class="btn btn-full" style="margin-top: 20px;">Proceed to Checkout</button>
                 </div>
             </div>
-            
+
             <div id="empty-cart-message" style="display: none; text-align: center; padding: 60px 0;">
                 <h3>Your cart is empty</h3>
                 <p>Add some delicious halwa to your cart!</p>

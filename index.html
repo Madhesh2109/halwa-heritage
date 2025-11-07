@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halwa Delights - Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
@@ -22,6 +23,9 @@
             <div class="logo">
                 <h1>Halwa Delights</h1>
             </div>
+
+            <!-- Hamburger (visible only on mobile) -->
+            <button id="menu-toggle" class="menu-toggle">☰</button>
 
             <!-- Right Side Buttons -->
             <div class="header-right">
@@ -50,6 +54,21 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
+
+    <!-- SIDEBAR MENU (for mobile) -->
+    <aside id="sidebar" class="sidebar">
+    <button id="close-sidebar" class="close-sidebar">×</button>
+    <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    </aside>
+    
+    <!-- Sidebar background overlay -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
 
 
     <!-- =========================================

@@ -1,160 +1,141 @@
 /* ================================
-   Checkout Page Styles - Cleaned
+   Modern Checkout Page (Firebase Ready)
    ================================ */
 
 .checkout-section {
+  background: linear-gradient(to bottom right, #fff8f3, #fff);
   padding: 80px 0;
-  background: linear-gradient(to bottom, #FFF9F2, white);
 }
 
 .checkout-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 30px;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.checkout-form,
-.order-summary {
+.checkout-left,
+.checkout-right {
   flex: 1;
+  min-width: 300px;
+}
+
+.checkout-card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 25px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+  transition: transform 0.2s ease;
 }
 
-.checkout-form h3,
-.order-summary h3 {
-  color: #C45C1A;
-  margin-bottom: 20px;
+.checkout-card:hover {
+  transform: translateY(-3px);
 }
 
-.checkout-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.checkout-card h2 {
+  font-size: 1.3rem;
+  color: #c45c1a;
+  margin-bottom: 15px;
 }
 
+/* Form Inputs */
 .checkout-form label {
+  display: block;
   font-weight: 500;
+  margin-bottom: 5px;
   color: #333;
 }
 
 .checkout-form input,
 .checkout-form textarea {
+  width: 100%;
   padding: 10px;
-  border: 1px solid rgba(230, 126, 34, 0.3);
+  border: 1px solid #e0b487;
   border-radius: 8px;
+  margin-bottom: 15px;
   font-family: "Poppins", sans-serif;
-  transition: border-color 0.2s;
 }
 
-.checkout-form input:focus,
-.checkout-form textarea:focus {
-  border-color: #E67E22;
-  outline: none;
+.checkout-form textarea {
+  resize: vertical;
 }
 
-/* Order Summary */
-.order-item {
+/* Payment Options */
+.payment-options {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.summary-total {
-  margin-top: 20px;
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-  font-weight: 600;
-}
-
-/* Coupon Section */
-.coupon-section {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 10px;
 }
 
-.coupon-section input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid rgba(230, 126, 34, 0.3);
-  border-radius: 8px;
-}
-
-.coupon-section button {
-  background: #E67E22;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border: 1px solid #f0d3b2;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.2s;
 }
 
-.coupon-section button:hover {
-  background: #C45C1A;
+.payment-option:hover {
+  background: #fff1e3;
+  border-color: #e67e22;
 }
 
-/* Inline coupon feedback */
-.coupon-feedback {
-  font-size: 0.9rem;
-  margin-top: 5px;
+.payment-option input {
+  accent-color: #e67e22;
 }
 
-/* Toast notification */
-.toast-message {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #333;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  opacity: 0.9;
-  z-index: 1000;
+.payment-option .icon {
+  font-size: 1.2rem;
 }
 
-/* Place Order Button */
-#place-order-btn {
+/* Order Summary */
+.order-summary h2 {
+  color: #c45c1a;
+  margin-bottom: 15px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+.summary-line.total {
+  font-weight: bold;
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+/* Order Button */
+.place-order-btn {
   margin-top: 20px;
-  background: #27ae60;
+  width: 100%;
+  background: #e67e22;
   color: white;
   border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
+  padding: 12px;
   font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
-#place-order-btn:hover {
-  background: #219150;
+.place-order-btn:hover {
+  background: #c45c1a;
 }
 
-/* ================================
-   Shipping Form Field Errors
-   ================================ */
-.field-error {
-  color: #e74c3c;
-  font-size: 12px;
-  margin-top: 5px;
-  animation: fadeIn 0.3s ease;
-}
-
-/* Optional smooth fade animation (shared with confirmation) */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* Responsive */
+@media (max-width: 768px) {
+  .checkout-container {
+    flex-direction: column;
   }
 }

@@ -1,139 +1,158 @@
-// products.js — Django API Integrated Version for Halwa Delights
+// products.js — Dynamic Filter + Sort + Add to Cart (Final Version)
 
-document.addEventListener('DOMContentLoaded', () => {
-    const categoryFilter = document.querySelector('#categoryFilter');
-    const priceFilter = document.querySelector('#priceFilter');
-    const resetFilters = document.querySelector('#resetFilters');
-    const productGrid = document.querySelector('.product-grid');
-    let allProducts = [];
+document.addEventListener("DOMContentLoaded", () => {
+  const sortFilter = document.querySelector("#sortFilter");
+  const priceFilter = document.querySelector("#priceFilter");
+  const resetFilters = document.querySelector("#resetFilters");
+  const productGrid = document.querySelector(".product-grid");
 
-    // Fetch products from Django API
-    async function fetchProducts()
-    {
-        const loadingMessage = document.getElementById('loadingMessage');
-        if (loadingMessage) loadingMessage.style.display = 'block';
-        
-        try
-        {
-            const response = await fetch('/api/products/');
-            if (!response.ok) throw new Error('Failed to load products');
-            allProducts = await response.json();
-            if (Array.isArray(allProducts) && allProducts.length > 0)
-            {
-                renderProducts(allProducts);
-            }
-        }
-        catch (err)
-        {
-            console.warn('Backend not available — showing default HTML products.');
-        }
-        finally
-        {
-            if (loadingMessage) loadingMessage.style.display = 'none';
-        }
-    }
+  let allProducts = [];
 
-    // Render products into HTML
-    function renderProducts(products) {
-        productGrid.innerHTML = products.map(p => `
-            <div class="product-card" data-id="${p.id}">
-                <div class="product-image">
-                    <img src="${p.image_url}" alt="${p.name}">
-                </div>
-                <h3>${p.name}</h3>
-                <p>${p.description}</p>
-                <span class="price">Rs.${p.price}/kg</span>
-                <button class="add-to-cart-btn" data-id="${p.id}">Add to Cart</button>
-            </div>
-        `).join('');
+  // =====================================
+  // 🔗 Initialize Products from HTML
+  // =====================================
+  function initializeProductsFromHTML() {
+    const cards = document.querySelectorAll(".product-card");
+    cards.forEach((card, index) => {
+      const name = card.querySelector("h3").textContent.trim();
+      const description = card.querySelector("p").textContent.trim();
+      const image = card.querySelector("img").getAttribute("src");
+      const priceText = card.querySelector(".price").textContent.trim();
 
-        // Rebind add-to-cart buttons
-        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-            btn.addEventListener('click', () => addToCart(btn.dataset.id));
-        });
-    }
+      // ✅ Correct numeric extraction — ignores 'Rs.' and keeps decimals
+      const priceMatch = priceText.replace(/,/g, "").match(/\d+(\.\d+)?/);
+      const price = priceMatch ? parseFloat(priceMatch[0]) : 0;
 
-    // Add product to cart
-    async function addToCart(productId) {
-        try {
-            const response = await fetch('/api/cart/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCSRFToken(),
-                },
-                body: JSON.stringify({ product_id: productId, quantity: 1 }),
-            });
+      const id = index + 1;
+      const product = { id, name, description, image, price };
+      allProducts.push(product);
 
-            if (!response.ok) throw new Error('Add to cart failed');
-            showNotification('Product added to cart successfully!', 'success');
-        } catch (err) {
-            console.error('Error adding to cart:', err);
-            showNotification('Failed to add to cart.', 'error');
-        }
-    }
-
-    // Apply category & price filters
-    function applyFilters() {
-        const category = categoryFilter.value;
-        const price = priceFilter.value;
-        let filtered = [...allProducts];
-
-        if (category !== 'all') {
-            filtered = filtered.filter(p => p.category.toLowerCase() === category.toLowerCase());
-        }
-
-        if (price !== 'all') {
-            filtered = filtered.filter(p => {
-                if (price === 'low') return p.price < 400;
-                if (price === 'medium') return p.price >= 400 && p.price <= 600;
-                if (price === 'high') return p.price > 600;
-                return true;
-            });
-        }
-
-        renderProducts(filtered);
-    }
-
-    // Reset filters
-    resetFilters.addEventListener('click', () => {
-        categoryFilter.value = 'all';
-        priceFilter.value = 'all';
-        renderProducts(allProducts);
+      const btn = card.querySelector(".add-to-cart-btn");
+      btn.dataset.id = id;
+      btn.addEventListener("click", () => addToCart(product));
     });
+  }
 
-    categoryFilter.addEventListener('change', applyFilters);
-    priceFilter.addEventListener('change', applyFilters);
+  // =====================================
+  // 🛒 Add Product to Cart
+  // =====================================
+  function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existing = cart.find((item) => item.id === product.id);
 
-    // Auto-refresh products every 30 seconds
-    setInterval(fetchProducts, 30000);
-
-    // Initial load
-    fetchProducts();
-});
-
-
-// Utility: get CSRF token for Django POST requests
-function getCSRFToken() {
-    const name = 'csrftoken=';
-    const decodedCookie = decodeURIComponent(document.cookie);
-    const cookies = decodedCookie.split(';');
-    for (let c of cookies) {
-        c = c.trim();
-        if (c.startsWith(name)) return c.substring(name.length);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+      });
     }
-    return '';
-}
 
-// Popup Notification
-function showNotification(message, type) {
-    const div = document.createElement('div');
-    div.className = `product-notification ${type}`;
-    div.textContent = message;
-    document.body.appendChild(div);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showToast(`${product.name} added to cart!`);
+    updateCartCount();
+  }
 
-    setTimeout(() => {
-        div.classList.add('hide');
-        setTimeout(() => div.remove(), 300);
-    }, 4000);
-}
+  // =====================================
+  // 🔍 Filter by Price Range + Sort by Price
+  // =====================================
+  function applyFilters() {
+    const sortValue = sortFilter ? sortFilter.value : "default";
+    const selectedPrice = priceFilter ? priceFilter.value : "all";
+
+    let filtered = [...allProducts];
+
+    // Filter by price range
+    if (selectedPrice !== "all") {
+      filtered = filtered.filter((p) => {
+        if (selectedPrice === "low") return p.price < 400;
+        if (selectedPrice === "medium") return p.price >= 400 && p.price <= 600;
+        if (selectedPrice === "high") return p.price > 600;
+        return true;
+      });
+    }
+
+    // Sort by price
+    if (sortValue === "lowToHigh") {
+      filtered.sort((a, b) => a.price - b.price);
+    } else if (sortValue === "highToLow") {
+      filtered.sort((a, b) => b.price - a.price);
+    }
+
+    renderFilteredProducts(filtered);
+  }
+
+  // =====================================
+  // 🎨 Render Filtered Products
+  // =====================================
+  function renderFilteredProducts(products) {
+    if (products.length === 0) {
+      productGrid.innerHTML = `<p style="text-align:center; padding:40px;">No products found</p>`;
+      return;
+    }
+
+    productGrid.innerHTML = products
+      .map(
+        (p) => `
+      <div class="product-card" data-id="${p.id}">
+        <div class="product-image"><img src="${p.image}" alt="${p.name}"></div>
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <span class="price">₹${p.price.toFixed(2)}/kg</span>
+        <button class="add-to-cart-btn" data-id="${p.id}">Add to Cart</button>
+      </div>
+    `
+      )
+      .join("");
+
+    // Rebind Add-to-Cart buttons for filtered products
+    document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
+      const product = products.find((p) => p.id == btn.dataset.id);
+      btn.addEventListener("click", () => addToCart(product));
+    });
+  }
+
+  // =====================================
+  // 🧮 Update Cart Count
+  // =====================================
+  function updateCartCount() {
+    const cartCount = document.querySelector(".cart-count");
+    if (!cartCount) return;
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = count;
+  }
+
+  // =====================================
+  // 🔔 Toast
+  // =====================================
+  function showToast(message) {
+    const toast = document.createElement("div");
+    toast.className = "toast-message";
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2000);
+  }
+
+  // =====================================
+  // 🧭 Filter + Sort Event Listeners
+  // =====================================
+  sortFilter?.addEventListener("change", applyFilters);
+  priceFilter?.addEventListener("change", applyFilters);
+
+  resetFilters?.addEventListener("click", () => {
+    if (sortFilter) sortFilter.value = "default";
+    if (priceFilter) priceFilter.value = "all";
+    renderFilteredProducts(allProducts);
+  });
+
+  // =====================================
+  // 🚀 Init
+  // =====================================
+  initializeProductsFromHTML();
+  updateCartCount();
+});

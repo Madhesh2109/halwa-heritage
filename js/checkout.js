@@ -1,28 +1,28 @@
 // ============================
-// CHECKOUT.JS – Django API Version
+// CHECKOUT.JS – Firebase Ready & Modern UI Version
 // ============================
 
 document.addEventListener("DOMContentLoaded", () => {
   const orderSummary = document.getElementById("order-summary");
+  const subtotalElement = document.getElementById("order-subtotal");
   const totalElement = document.getElementById("order-total");
   const placeOrderBtn = document.getElementById("place-order-btn");
-  const emptyMessage = document.getElementById("empty-message");
+
+  // Shipping and payment form elements
+  const fullNameInput = document.getElementById("fullname");
+  const addressInput = document.getElementById("address");
+  const phoneInput = document.getElementById("phone");
+  const emailInput = document.getElementById("email");
 
   let cart = [];
 
   // ============================
-  // 🧠 Fetch Cart Items from API
+  // 🧠 Load Cart from Local Storage
   // ============================
-  async function fetchCart() {
-    try {
-      const res = await fetch("/api/cart/");
-      if (!res.ok) throw new Error("Failed to load cart");
-      cart = await res.json();
-      renderOrderSummary();
-    } catch (err) {
-      console.error(err);
-      showToast("Unable to load your cart. Please try again.");
-    }
+  function loadCart() {
+    const storedCart = localStorage.getItem("cart");
+    cart = storedCart ? JSON.parse(storedCart) : [];
+    renderOrderSummary();
   }
 
   // ============================
@@ -30,79 +30,102 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================
   function renderOrderSummary() {
     if (!cart || cart.length === 0) {
-      orderSummary.innerHTML = "";
-      emptyMessage.style.display = "block";
+      orderSummary.innerHTML = `<p style="text-align:center; color:#999;">Your cart is empty.</p>`;
+      subtotalElement.textContent = "₹0";
       totalElement.textContent = "₹0";
       return;
     }
 
-    emptyMessage.style.display = "none";
-
     orderSummary.innerHTML = cart
       .map(
         (item) => `
-      <div class="summary-item">
-        <div class="item-details">
-          <h3>${item.name}</h3>
-          <p>₹${item.price} × ${item.quantity}</p>
+        <div class="summary-item">
+          <div class="item-details">
+            <strong>${item.name}</strong>
+            <p>₹${item.price} × ${item.quantity}</p>
+          </div>
+          <p class="item-total">₹${(item.price * item.quantity).toFixed(2)}</p>
         </div>
-        <p class="item-total">₹${(item.price * item.quantity).toFixed(2)}</p>
-      </div>
-    `
+      `
       )
       .join("");
 
-    updateOrderTotal();
+    updateTotals();
   }
 
   // ============================
-  // 💰 Update Order Total
+  // 💰 Calculate and Update Totals
   // ============================
-  function updateOrderTotal() {
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  function updateTotals() {
+    const subtotal = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    const shipping = cart.length > 0 ? 50 : 0;
+    const total = subtotal + shipping;
+
+    subtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
     totalElement.textContent = `₹${total.toFixed(2)}`;
   }
 
   // ============================
-  // 🧾 Place Order via API
+  // ✅ Validate Checkout Form
   // ============================
-  async function placeOrder() {
-    try {
-      // Optionally include shipping or user data if stored globally
-      const orderData = {
-        items: cart.map((item) => ({
-          id: item.id,
-          quantity: item.quantity,
-        })),
-      };
-
-      const res = await fetch("/api/order/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData),
-      });
-
-      if (!res.ok) throw new Error("Order placement failed");
-
-      // ✅ Redirect to confirmation page
-      const order = await res.json();
-      window.location.href = `order-confirmation.html?order_id=${order.id}`;
-    } catch (err) {
-      console.error(err);
-      showToast("Unable to place order. Please try again.");
+  function validateForm() {
+    if (
+      !fullNameInput.value.trim() ||
+      !addressInput.value.trim() ||
+      !phoneInput.value.trim() ||
+      !emailInput.value.trim()
+    ) {
+      showToast("⚠️ Please fill all the required fields!");
+      return false;
     }
+    return true;
   }
 
   // ============================
-  // 🧭 Event Listener
+  // 📦 Place Order (Firebase Ready)
   // ============================
-  placeOrderBtn?.addEventListener("click", async () => {
+  async function placeOrder() {
     if (!cart || cart.length === 0) {
       showToast("Your cart is empty!");
-    } else {
-      await placeOrder();
+      return;
     }
-  });
+
+    if (!validateForm()) return;
+
+    const orderData = {
+      name: fullNameInput.value.trim(),
+      address: addressInput.value.trim(),
+      phone: phoneInput.value.trim(),
+      email: emailInput.value.trim(),
+      paymentMethod: document.querySelector(
+        'input[name="payment"]:checked'
+      ).value,
+      items: cart,
+      totalAmount: totalElement.textContent.replace("₹", ""),
+      createdAt: new Date().toISOString(),
+    };
+
+    showToast("⏳ Placing your order...");
+
+    // ============================
+    // 🔥 Firebase Integration (placeholder)
+    // ============================
+    // Example:
+    // import { addDoc, collection } from "firebase/firestore";
+    // await addDoc(collection(db, "orders"), orderData);
+
+    // Simulate order success
+    setTimeout(() => {
+      localStorage.removeItem("cart");
+      showToast("✅ Order placed successfully!");
+      setTimeout(() => {
+        window.location.href = "order-confirmation.html";
+      }, 1500);
+    }, 1500);
+  }
 
   // ============================
   // 🔔 Toast Notification
@@ -115,6 +138,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => toast.remove(), 2000);
   }
 
-  // Initial cart fetch
-  fetchCart();
+  // ============================
+  // 🧭 Event Listener
+  // ============================
+  placeOrderBtn?.addEventListener("click", placeOrder);
+
+  // Initial cart load
+  loadCart();
 });

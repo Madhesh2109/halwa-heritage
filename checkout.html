@@ -10,280 +10,127 @@
     <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
 </head>
 <body>
-<main>
+    <main>
+        <!-- =========================================
+            HEADER: LOGO + LOGIN + CART
+            ========================================= -->
+        <header>
+            <div class="container header-flex">
 
-    <!-- =========================================
-         HEADER: LOGO + LOGIN + CART
-         ========================================= -->
-    <header>
-        <div class="container header-flex">
-
-            <!-- Logo -->
-            <div class="logo">
-                <h1>Halwa Delights</h1>
-            </div>
-
-            <!-- Right Side Buttons -->
-            <div class="header-right">
-                <a href="auth.html" class="btn-login">Login</a>
-
-                <!-- Hidden until login -->
-                <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
-
-                <!-- Cart -->
-                <a id="cart-icon" class="cart-icon" href="cart.html">
-                    🛒 <span class="cart-count">0</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-
-    <!-- =========================================
-         MAIN MENU (Home, About, Products, Contact)
-         ========================================= -->
-    <nav class="main-menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="page-hero">
-        <div class="container">
-            <h1>Checkout</h1>
-            <p>Complete your order</p>
-        </div>
-    </section>
-
-    <section class="checkout-section">
-        <div class="container">
-            <div class="checkout-steps">
-                <div class="step completed">
-                    <span class="step-number">1</span>
-                    <span class="step-text">Cart</span>
+                <!-- Logo -->
+                <div class="logo">
+                    <h1>Halwa Delights</h1>
                 </div>
-                <div class="step completed">
-                    <span class="step-number">2</span>
-                    <span class="step-text">Information</span>
-                </div>
-                <div class="step active">
-                    <span class="step-number">3</span>
-                    <span class="step-text">Payment</span>
-                </div>
-                <div class="step">
-                    <span class="step-number">4</span>
-                    <span class="step-text">Confirmation</span>
+
+                <!-- Right Side Buttons -->
+                <div class="header-right">
+                    <a href="auth.html" class="btn-login">Login</a>
+
+                    <!-- Hidden until login -->
+                    <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
+
+                    <!-- Cart -->
+                    <a id="cart-icon" class="cart-icon" href="cart.html">
+                        🛒 <span class="cart-count">0</span>
+                    </a>
                 </div>
             </div>
+        </header>
 
-            <div class="checkout-content">
-                <div class="checkout-forms">
-                    <!-- Payment Method Section -->
-                    <form id="payment-form" class="checkout-form">
-                        <h3>Select Payment Method</h3>
-                        
-                        <div class="payment-methods">
-                            <div class="payment-method">
-                                <input type="radio" id="gpay-payment" name="payment-method" value="gpay" checked>
-                                <label for="gpay-payment">
-                                    <span class="payment-icon">📱</span>
-                                    <div class="payment-info">
-                                        <strong>Google Pay</strong>
-                                        <span class="payment-desc">Fast and secure UPI payment</span>
-                                    </div>
-                                </label>
-                            </div>
-                            
-                            <div class="payment-method">
-                                <input type="radio" id="cod-payment" name="payment-method" value="cod">
-                                <label for="cod-payment">
-                                    <span class="payment-icon">💰</span>
-                                    <div class="payment-info">
-                                        <strong>Cash on Delivery</strong>
-                                        <span class="payment-desc">Pay when you receive your order</span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
 
-                        <!-- GPay Payment Details -->
-                        <div id="gpay-details" class="payment-details active">
-                            <div class="gpay-container">
-                                <div class="gpay-header">
-                                    <div class="gpay-logo">GPay</div>
-                                    <div class="gpay-secure">🔒 Secure</div>
-                                </div>
-                                
-                                <div class="gpay-content">
-                                    <div class="gpay-amount">
-                                        <span>Amount to pay:</span>
-                                        <strong id="gpay-amount">Rs.0</strong>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="gpay-upi-id">UPI ID</label>
-                                        <input type="text" id="gpay-upi-id" name="gpay-upi-id" placeholder="yourname@okicici" required>
-                                        <small class="help-text">Enter your UPI ID for Google Pay</small>
-                                    </div>
-                                    
-                                    <div class="gpay-features">
-                                        <div class="feature">
-                                            <span>✅</span>
-                                            Instant Payment
-                                        </div>
-                                        <div class="feature">
-                                            <span>✅</span>
-                                            100% Secure
-                                        </div>
-                                        <div class="feature">
-                                            <span>✅</span>
-                                            Easy Refunds
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- =========================================
+            MAIN MENU (Home, About, Products, Contact)
+            ========================================= -->
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-                        <!-- Cash on Delivery Details -->
-                        <div id="cod-details" class="payment-details">
-                            <div class="cod-container">
-                                <div class="cod-icon">💰</div>
-                                <h4>Cash on Delivery</h4>
-                                <p>Pay with cash when your order is delivered.</p>
-                                
-                                <div class="cod-info">
-                                    <div class="info-item">
-                                        <span>💵</span>
-                                        <div>
-                                            <strong>Exact Amount Required</strong>
-                                            <small>Please keep exact change ready</small>
-                                        </div>
-                                    </div>
-                                    <div class="info-item">
-                                        <span>📦</span>
-                                        <div>
-                                            <strong>Delivery First</strong>
-                                            <small>Pay after receiving your order</small>
-                                        </div>
-                                    </div>
-                                    <div class="info-item">
-                                        <span>⏰</span>
-                                        <div>
-                                            <strong>Delivery in 2-3 days</strong>
-                                            <small>Standard delivery timeline</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Checkout</h1>
+                <p>Complete your order</p>
+            </div>
+        </section>
 
-                        <!-- Terms and Conditions -->
-                        <div class="terms-section">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="accept-terms" required>
-                                <span class="checkmark"></span>
-                                I agree to the <a href="#" class="terms-link">Terms & Conditions</a> and 
-                                <a href="#" class="terms-link">Privacy Policy</a>
+        <section class="checkout-section">
+            <div class="checkout-container">
+                <!-- Left Column -->
+                <div class="checkout-left">
+                    <div class="checkout-card">
+                        <h2>Shipping Information</h2>
+                        <form id="shipping-form" class="checkout-form">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" placeholder="Enter your name" required />
+
+                            <label for="address">Address</label>
+                            <textarea id="address" placeholder="House number, street, city" required></textarea>
+
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required />
+
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="you@example.com" required />
+                        </form>
+                    </div>
+
+                    <div class="checkout-card">
+                        <h2>Payment Method</h2>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="gpay" checked />
+                                <span class="icon">📱</span> Google Pay (UPI)
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cod" />
+                                <span class="icon">💰</span> Cash on Delivery
                             </label>
                         </div>
-                    </form>
+                    </div>
                 </div>
 
-                <div class="order-summary">
-                    <h3>Order Summary</h3>
-                    
-                    <div id="order-items" class="order-items">
-                        <!-- Cart items will be loaded here -->
-                    </div>
-                    
-                    <div class="order-totals">
-                        <div class="summary-row">
-                            <span>Subtotal:</span>
-                            <span id="summary-subtotal">Rs.0</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Shipping:</span>
-                            <span>Rs.50</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Discount:</span>
-                            <span id="summary-discount">-Rs.0</span>
-                        </div>
-                        <div class="summary-row summary-total">
-                            <span>Total:</span>
-                            <span id="summary-total">Rs.50</span>
-                        </div>
-                    </div>
+                <!-- Right Column -->
+                <div class="checkout-right">
+                    <div class="checkout-card order-summary">
+                        <h2>Your Order</h2>
+                        <div id="order-summary"></div>
 
-                    <div class="checkout-actions">
-                        <a href="cart.html" class="btn btn-back">← Back to Cart</a>
-                        <button type="button" id="complete-payment-btn" class="btn btn-primary">
-                            Complete Payment
+                        <div class="summary-line">
+                            <span>Subtotal</span><span id="order-subtotal">₹0</span>
+                        </div>
+
+                        <div class="summary-line">
+                            <span>Shipping</span><span id="order-shipping">₹0</span>
+                        </div>
+                        
+                        <div class="summary-line total">
+                            <span>Total</span><span id="order-total">₹0</span>
+                        </div>
+
+                        <button id="place-order-btn" class="place-order-btn">
+                            Place Order
                         </button>
                     </div>
-
-                    <div class="security-notice">
-                        <p>🔒 Your payment information is secure and encrypted</p>
-                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Payment Processing Modal -->
-    <div id="payment-modal" class="payment-modal" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-title">Processing Payment</h3>
-                <span class="close-modal">&times;</span>
+        <footer>
+            <div class="container">
+                <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
             </div>
-            <div class="modal-body">
-                <div id="gpay-processing" class="processing-content">
-                    <div class="processing-spinner"></div>
-                    <h4>Redirecting to Google Pay</h4>
-                    <p>Please complete the payment in the UPI app</p>
-                    <div class="processing-timer">
-                        <span>Redirecting in </span>
-                        <span id="countdown">5</span>
-                        <span> seconds</span>
-                    </div>
-                </div>
-                
-                <div id="cod-processing" class="processing-content" style="display: none;">
-                    <div class="cod-success">✅</div>
-                    <h4>Order Confirmed!</h4>
-                    <p>Your order has been placed successfully</p>
-                    <p class="cod-note">Pay with cash when you receive your delivery</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button id="cancel-payment" class="btn btn-secondary">Cancel</button>
-                <button id="view-order" class="btn btn-primary" style="display: none;">View Order</button>
-            </div>
-        </div>
-    </div>
+        </footer>
 
-    <!-- Loading Overlay -->
-    <div id="loading-overlay" class="loading-overlay" style="display: none;">
-        <div class="loading-spinner"></div>
-        <p>Processing your order...</p>
-    </div>
+        <button class="back-to-top" id="backToTop">↑</button>
+    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <button class="back-to-top" id="backToTop">↑</button>
-    
     <script src="./js/script.js"></script>
     <script src="./js/cart.js"></script>
     <script src="./js/checkout.js"></script>
     <script src="./js/payment.js"></script>
-</main>
 </body>
 </html>

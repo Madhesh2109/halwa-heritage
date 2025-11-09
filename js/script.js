@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function()
         {
             name: "Tirunelveli Halwa",
             desc: "Our most loved classic halwa of the week.",
-            image: "images/tirunelveli-halwa.jpg"
+            image: "images/tirunelveli-halwa.png"
         },
         {
             name: "Milk Halwa",
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function()
         {
             name: "Cashew Halwa",
             desc: "Rich and nutty halwa made with premium cashews.",
-            image: "images/cashew-halwa.jpg"
+            image: "images/cashew-halwa.png"
         }
     ];
 

@@ -7,12 +7,6 @@
   background: linear-gradient(to bottom, #FFF9F2, white);
 }
 
-.cart-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
 .cart-items {
   display: flex;
   flex-direction: column;
@@ -131,14 +125,6 @@
 
 #checkout-btn:hover {
   background: #219150;
-}
-
-/* Empty cart message */
-.cart-empty {
-  text-align: center;
-  color: #666;
-  padding: 20px;
-  font-size: 1.1rem;
 }
 
 /* Toast notification */

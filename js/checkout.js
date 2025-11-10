@@ -1,5 +1,5 @@
 // ============================
-// CHECKOUT.JS – Firebase Ready & Modern UI Version
+// CHECKOUT.JS – Firebase Ready & Polished Final Version
 // ============================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,21 +8,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalElement = document.getElementById("order-total");
   const placeOrderBtn = document.getElementById("place-order-btn");
 
-  // Shipping and payment form elements
+  // Shipping and form inputs
   const fullNameInput = document.getElementById("fullname");
   const addressInput = document.getElementById("address");
   const phoneInput = document.getElementById("phone");
   const emailInput = document.getElementById("email");
 
   let cart = [];
+  let shipping = 0;
 
   // ============================
   // 🧠 Load Cart from Local Storage
   // ============================
   function loadCart() {
-    const storedCart = localStorage.getItem("cart");
-    cart = storedCart ? JSON.parse(storedCart) : [];
-    renderOrderSummary();
+    try {
+      const storedCart = localStorage.getItem("cart");
+      cart = storedCart ? JSON.parse(storedCart) : [];
+      renderOrderSummary();
+    } catch (error) {
+      console.error("Error loading cart:", error);
+      showToast("⚠️ Failed to load your cart.");
+    }
   }
 
   // ============================
@@ -36,36 +42,51 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    orderSummary.innerHTML = cart
-      .map(
-        (item) => `
-        <div class="summary-item">
-          <div class="item-details">
-            <strong>${item.name}</strong>
-            <p>₹${item.price} × ${item.quantity}</p>
+    // Generate cart HTML
+    const itemsHTML = cart
+      .map((item) => {
+        const price = parseFloat(item.price) || 0;
+        const qty = Number(item.quantity) || 1;
+        const totalItemPrice = price * qty;
+
+        return `
+          <div class="summary-item">
+            <div class="item-details">
+              <strong>${item.name}</strong>
+              <p>₹${price} × ${qty}</p>
+            </div>
+            <p class="item-total">₹${totalItemPrice.toFixed(2)}</p>
           </div>
-          <p class="item-total">₹${(item.price * item.quantity).toFixed(2)}</p>
-        </div>
-      `
-      )
+        `;
+      })
       .join("");
 
+    orderSummary.innerHTML = itemsHTML;
     updateTotals();
   }
 
   // ============================
-  // 💰 Calculate and Update Totals
+  // 💰 Calculate & Update Totals
   // ============================
   function updateTotals() {
-    const subtotal = cart.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
-    const shipping = cart.length > 0 ? 50 : 0;
+    const subtotal = cart.reduce((sum, item) => {
+      const price = parseFloat(item.price) || 0;
+      const qty = Number(item.quantity) || 1;
+      return sum + price * qty;
+    }, 0);
+
     const total = subtotal + shipping;
 
     subtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
     totalElement.textContent = `₹${total.toFixed(2)}`;
+  }
+
+  // ============================
+  // 🚚 Set Shipping Dynamically (optional)
+  // ============================
+  function setShippingCost(amount) {
+    shipping = parseFloat(amount) || 0;
+    updateTotals();
   }
 
   // ============================
@@ -85,46 +106,66 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============================
-  // 📦 Place Order (Firebase Ready)
+  // 📦 Place Order
   // ============================
   async function placeOrder() {
     if (!cart || cart.length === 0) {
-      showToast("Your cart is empty!");
+      showToast("🛒 Your cart is empty!");
       return;
     }
 
     if (!validateForm()) return;
+
+    // Payment selection validation
+    const paymentInput = document.querySelector('input[name="payment"]:checked');
+    if (!paymentInput) {
+      showToast("⚠️ Please select a payment method!");
+      return;
+    }
+
+    const subtotal = cart.reduce((sum, item) => {
+      const price = parseFloat(item.price) || 0;
+      const qty = Number(item.quantity) || 1;
+      return sum + price * qty;
+    }, 0);
+
+    const total = subtotal + shipping;
 
     const orderData = {
       name: fullNameInput.value.trim(),
       address: addressInput.value.trim(),
       phone: phoneInput.value.trim(),
       email: emailInput.value.trim(),
-      paymentMethod: document.querySelector(
-        'input[name="payment"]:checked'
-      ).value,
+      paymentMethod: paymentInput.value,
       items: cart,
-      totalAmount: totalElement.textContent.replace("₹", ""),
+      subtotal,
+      shipping,
+      totalAmount: total,
       createdAt: new Date().toISOString(),
     };
 
     showToast("⏳ Placing your order...");
 
-    // ============================
-    // 🔥 Firebase Integration (placeholder)
-    // ============================
-    // Example:
-    // import { addDoc, collection } from "firebase/firestore";
-    // await addDoc(collection(db, "orders"), orderData);
+    try {
+      // ============================
+      // 🔥 Firebase Integration (placeholder)
+      // ============================
+      // Example:
+      // import { addDoc, collection } from "firebase/firestore";
+      // await addDoc(collection(db, "orders"), orderData);
 
-    // Simulate order success
-    setTimeout(() => {
-      localStorage.removeItem("cart");
-      showToast("✅ Order placed successfully!");
+      // Simulated success
       setTimeout(() => {
-        window.location.href = "order-confirmation.html";
-      }, 1500);
-    }, 1500);
+        localStorage.removeItem("cart");
+        showToast("✅ Order placed successfully!");
+        setTimeout(() => {
+          window.location.href = "order-confirmation.html";
+        }, 1200);
+      }, 1200);
+    } catch (error) {
+      console.error("Order placement failed:", error);
+      showToast("❌ Failed to place order. Try again!");
+    }
   }
 
   // ============================
@@ -135,14 +176,20 @@ document.addEventListener("DOMContentLoaded", () => {
     toast.className = "toast-message";
     toast.textContent = message;
     document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2000);
+    setTimeout(() => {
+      toast.classList.add("fade-out");
+      setTimeout(() => toast.remove(), 400);
+    }, 2000);
   }
 
   // ============================
-  // 🧭 Event Listener
+  // 🧭 Event Listeners
   // ============================
   placeOrderBtn?.addEventListener("click", placeOrder);
 
-  // Initial cart load
+  // Initial load
   loadCart();
+
+  // Example dynamic shipping if needed:
+  // setShippingCost(50);
 });

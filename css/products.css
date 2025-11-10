@@ -52,15 +52,43 @@
 /* ✅ Product Badge */
 .product-badge {
     position: absolute;
-    top: 12px;
-    left: 12px;
-    background: #E67E22;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 6px;
-    font-size: 0.75rem;
+    top: 14px;
+    left: 14px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
     font-weight: 600;
-    display: none;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    background: linear-gradient(135deg, #E67E22, #D35400);
+    animation: floatBadge 2s ease-in-out infinite;
+}
+/* Small floating animation */
+@keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+/* ✅ Themed badge colors (based on text) */
+.product-badge[data-type="Premium"] {
+    background: linear-gradient(135deg, #FFD700, #FFC107);
+    color: #5D4037;
+}
+.product-badge[data-type="Best Seller"] {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+}
+.product-badge[data-type="Popular"] {
+    background: linear-gradient(135deg, #9B59B6, #8E44AD);
+}
+.product-badge[data-type="Trending"] {
+    background: linear-gradient(135deg, #16A085, #1ABC9C);
+}
+.product-badge[data-type="New"] {
+    background: linear-gradient(135deg, #2ECC71, #27AE60);
 }
 
 /* Image */

@@ -15,7 +15,7 @@
       <div class="auth-form-container">
 
         <!-- LOGIN FORM -->
-        <form class="auth-form" id="login-form" action="#" method="POST">
+        <form class="auth-form" id="login-form">
           <h1 class="auth-title">Welcome Back!</h1>
           <p class="auth-subtitle">Login to continue your sweet journey 🍯</p>
 
@@ -52,7 +52,7 @@
         </form>
 
         <!-- REGISTER FORM -->
-        <form class="auth-form hidden" id="register-form" action="#" method="POST">
+        <form class="auth-form hidden" id="register-form">
           <h1 class="auth-title">Create Your Account</h1>
           <p class="auth-subtitle">Join us and enjoy exclusive offers!</p>
 
@@ -105,6 +105,22 @@
     </div>
   </section>
 
-  <script src="js/auth.js"></script>
+  <!-- 🔐 Forgot Password Modal -->
+  <div id="reset-modal" class="reset-modal">
+    <div class="reset-content">
+      <h2>Reset Password 🔒</h2>
+      <p>Enter your registered email address. We’ll send you a reset link.</p>
+
+      <input type="email" id="reset-email" placeholder="you@example.com" />
+      <div id="reset-message" class="reset-message"></div>
+
+      <div class="reset-actions">
+        <button id="send-reset-btn">Send Reset Link</button>
+        <button id="close-reset-btn" class="cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/auth.js"></script>
 </body>
 </html>

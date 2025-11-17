@@ -11,105 +11,143 @@
     <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
 </head>
 <body>
-<main>
+    <main>
 
-    <!-- =========================================
-         HEADER: LOGO + LOGIN + CART
-         ========================================= -->
-    <header>
-        <div class="container header-flex">
+        <!-- =========================================
+            HEADER: LOGO + LOGIN + CART
+        ========================================= -->
+        <header>
+                <div class="container header-flex">
 
-            <!-- Logo -->
-            <div class="logo">
-                <h1>Halwa Delights</h1>
-            </div>
-
-            <!-- Right Side Buttons -->
-            <div class="header-right">
-                <a href="auth.html" class="btn-login">Login</a>
-
-                <!-- Hidden until login -->
-                <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
-
-                <!-- Cart -->
-                <a id="cart-icon" class="cart-icon" href="cart.html">
-                    🛒 <span class="cart-count">0</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-
-    <!-- =========================================
-         MAIN MENU (Home, About, Products, Contact)
-         ========================================= -->
-    <nav class="main-menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="page-hero">
-        <div class="container">
-            <h1>Contact Us</h1>
-            <p>We'd love to hear from you</p>
-        </div>
-    </section>
-
-    <section class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Visit Our Shop</h3>
-                    <p>Gopal Swami Kovil Street<br>Palayamkottai, Tirunelveli - 627002</p>
-                    <p>Phone: (+91) 7871053548</p>
-                    <p>Email: halwa-heritage@gmail.com</p>
-                    
-                    <h3>Business Hours</h3>
-                    <p>Monday - Saturday: 9am - 8pm<br>Sunday: Closed</p>
-                    
-                    <h3>Follow Us</h3>
-                    <div class="social-links">
-                        <a href="#">Facebook</a>
-                        <a href="#">Instagram</a>
-                        <a href="#">Whatsapp</a>
-                    </div>
-                </div>
-                
-                <div class="contact-feedback">
-                    <h3>Give Your Feedback</h3>
-
-                    <div class="rating-box">
-                        <span class="star" data-value="1">★</span>
-                        <span class="star" data-value="2">★</span>
-                        <span class="star" data-value="3">★</span>
-                        <span class="star" data-value="4">★</span>
-                        <span class="star" data-value="5">★</span>
+                    <!-- Logo -->
+                    <div class="logo">
+                        <h1>Halwa Delights</h1>
                     </div>
 
-                    <textarea placeholder="Write your feedback..." rows="5" class="feedback-text"></textarea>
-                    
-                    <button class="btn" id="submitFeedback">Submit Feedback</button>
+                    <!-- Hamburger (visible only on mobile) -->
+                    <button id="menu-toggle" class="menu-toggle">☰</button>
+
+                    <!-- Right Side Buttons -->
+                    <div class="header-right">
+                        <a href="auth.html" class="btn-login">Login</a>
+
+                        <!-- My Orders Link (Visible only after login) -->
+                        <a href="my-orders.html" id="my-orders-link" class="btn-orders" style="display:none;">📦 My Orders</a>
+
+                        <!-- Hidden until login -->
+                        <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
+
+                        <!-- Cart -->
+                        <a id="cart-icon" class="cart-icon" href="cart.html">
+                            🛒 <span class="cart-count">0</span>
+                        </a>
+
+                        <!-- Profile section -->
+                        <div class="profile-wrapper" style="display:none; position:relative;">
+                            <button id="profile-btn" class="profile-btn" title="Profile">
+                                👤
+                            </button>
+
+                            <div class="profile-dropdown" id="profile-dropdown">
+                                <div class="profile-header">
+                                    <h4 id="profile-title">My Profile</h4>
+                                </div>
+
+                                <div class="profile-content">
+                                    <label>Name</label>
+                                    <input id="profile-name" type="text" readonly />
+
+                                    <label>Email</label>
+                                    <input id="profile-email" type="text" readonly disabled />
+
+                                    <label>Mobile</label>
+                                    <input id="profile-mobile" type="text" readonly />
+
+                                    <div class="profile-actions">
+                                        <button id="edit-btn" class="profile-btn-action">Edit</button>
+                                        <button id="update-btn" class="profile-btn-action" style="display:none;">Update</button>
+                                        <button id="cancel-btn" class="profile-btn-action" style="display:none;">Cancel</button>
+                                        <button id="change-email-btn" class="profile-btn-action">Change Email</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+        </header>
 
+
+        <!-- =========================================
+            MAIN MENU (Home, About, Products, Contact)
+            ========================================= -->
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section class="page-hero">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>We'd love to hear from you</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
-        </div>
-    </footer>
+        <section class="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Visit Our Shop</h3>
+                        <p>Gopal Swami Kovil Street<br>Palayamkottai, Tirunelveli - 627002</p>
+                        <p>Phone: (+91) 7871053548</p>
+                        <p>Email: halwa-heritage@gmail.com</p>
+                        
+                        <h3>Business Hours</h3>
+                        <p>Monday - Saturday: 9am - 8pm<br>Sunday: Closed</p>
+                        
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#">Facebook</a>
+                            <a href="#">Instagram</a>
+                            <a href="#">Whatsapp</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-feedback">
+                        <h3>Give Your Feedback</h3>
 
-    <button class="back-to-top" id="backToTop">↑</button>
-    
-    <script src="./js/script.js"></script>
-    <script src="./js/cart.js"></script>
-    <script src="./js/contact.js"></script>
-</main>
+                        <div class="rating-box">
+                            <span class="star" data-value="1">😡</span>
+                            <span class="star" data-value="2">😕</span>
+                            <span class="star" data-value="3">🙂</span>
+                            <span class="star" data-value="4">😍</span>
+                            <span class="star" data-value="5">🤩</span>
+                        </div>
+
+                        <textarea placeholder="Write your feedback..." rows="5" class="feedback-text"></textarea>
+                        
+                        <button class="btn" id="submitFeedback">Submit Feedback</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <button class="back-to-top" id="backToTop">↑</button>
+        
+        <script type="module" src="./js/script.js"></script>
+        <script src="./js/cart.js"></script>
+        <script type="module" src="./firebase/session.js"></script>
+        <script type="module" src="./js/contact.js"></script>
+    </main>
 </body>
 </html>

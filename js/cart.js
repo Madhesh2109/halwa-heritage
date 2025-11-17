@@ -2,7 +2,8 @@
 // CART.JS – Clean, Stable, Firebase-Ready
 // ============================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () =>
+{
   const cartContainer = document.getElementById("cart-items-container");
   const totalElement = document.getElementById("cart-total");
   const cartCount = document.querySelector(".cart-count");
@@ -107,26 +108,34 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================
   // ✅ Event Delegation
   // ============================
-  cartContainer.addEventListener("click", (e) => {
-    const index = e.target.dataset.index;
-    if (!index) return;
+  if(cartContainer)
+  {
+    cartContainer.addEventListener("click", (e) =>
+    {
+      const index = e.target.dataset.index;
+      if (!index) return;
 
-    if (e.target.classList.contains("increase")) changeQuantity(index, 1);
-    if (e.target.classList.contains("decrease")) changeQuantity(index, -1);
-    if (e.target.classList.contains("remove-item")) removeCartItem(index);
-  });
+      if (e.target.classList.contains("increase")) changeQuantity(index, 1);
+      if (e.target.classList.contains("decrease")) changeQuantity(index, -1);
+      if (e.target.classList.contains("remove-item")) removeCartItem(index);
+    });
+  }
 
   // ============================
   // ✅ Checkout
   // ============================
-  checkoutBtn.addEventListener("click", () => {
-    if (cart.length === 0) {
-      showToast("Your cart is empty!");
-      return;
-    }
-
-    window.location.href = "checkout.html";
-  });
+  if (checkoutBtn)
+  {
+    checkoutBtn.addEventListener("click", () =>
+    {
+      if (cart.length === 0)
+      {
+        showToast("Your cart is empty!");
+        return;
+      }
+      window.location.href = "checkout.html";
+    });
+  }
 
   // ============================
   // ✅ Toast

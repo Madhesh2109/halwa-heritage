@@ -12,93 +12,127 @@
 </head>
 
 <body>
-<main>
+    <main>
 
-    <!-- =========================================
+        <!-- =========================================
          HEADER: LOGO + LOGIN + CART
          ========================================= -->
-    <header>
-        <div class="container header-flex">
+        <header>
+            <div class="container header-flex">
 
-            <!-- Logo -->
-            <div class="logo">
-                <h1>Halwa Delights</h1>
+                <!-- Logo -->
+                <div class="logo">
+                    <h1>Halwa Delights</h1>
+                </div>
+
+                <!-- Hamburger (visible only on mobile) -->
+                <button id="menu-toggle" class="menu-toggle">☰</button>
+
+                <!-- Right Side Buttons -->
+                <div class="header-right">
+                    <a href="auth.html" class="btn-login">Login</a>
+
+                    <!-- Hidden until login -->
+                    <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
+
+                    <!-- Cart -->
+                    <a id="cart-icon" class="cart-icon" href="cart.html">
+                        🛒 <span class="cart-count">0</span>
+                    </a>
+
+                    <!-- Profile section -->
+                    <div class="profile-wrapper" style="display:none; position:relative;">
+                        <button id="profile-btn" class="profile-btn" title="Profile">
+                            👤
+                        </button>
+
+                        <div class="profile-dropdown" id="profile-dropdown">
+                            <div class="profile-header">
+                                <h4 id="profile-title">My Profile</h4>
+                            </div>
+
+                            <div class="profile-content">
+                                <label>Name</label>
+                                <input id="profile-name" type="text" readonly />
+
+                                <label>Email</label>
+                                <input id="profile-email" type="text" readonly disabled />
+
+                                <label>Mobile</label>
+                                <input id="profile-mobile" type="text" readonly />
+
+                                <div class="profile-actions">
+                                    <button id="edit-btn" class="profile-btn-action">Edit</button>
+                                    <button id="update-btn" class="profile-btn-action" style="display:none;">Update</button>
+                                    <button id="cancel-btn" class="profile-btn-action" style="display:none;">Cancel</button>
+                                    <button id="change-email-btn" class="profile-btn-action">Change Email</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </header>
 
-            <!-- Right Side Buttons -->
-            <div class="header-right">
-                <a href="auth.html" class="btn-login">Login</a>
+        <!-- =========================================
+            MAIN MENU (Home, About, Products, Contact)
+            ========================================= -->
+        <nav class="main-menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
 
-                <!-- Hidden until login -->
-                <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
-
-                <!-- Cart -->
-                <a id="cart-icon" class="cart-icon" href="cart.html">
-                    🛒 <span class="cart-count">0</span>
-                </a>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Shopping Cart</h1>
+                <p>Review your halwa selections</p>
             </div>
-        </div>
-    </header>
+        </section>
 
+        <section class="cart-section">
+            <div class="container">
+                
+                <div id="cart-content" class="ecommerce-features">
+                    <h2>Your Shopping Cart</h2>
+                    <div id="cart-items-container" class="cart-items">
+                        <!-- Dynamic cart items go here -->
+                    </div>
+                    
+                    <div class="cart-summary">
+                        <h3>Total: <span id="cart-total">₹0</span></h3>
+                        <button id="checkout-btn" class="btn btn-full" style="margin-top: 20px;">Proceed to Checkout</button>
+                    </div>
+                </div>
 
-    <!-- =========================================
-         MAIN MENU (Home, About, Products, Contact)
-         ========================================= -->
-    <nav class="main-menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="page-hero">
-        <div class="container">
-            <h1>Shopping Cart</h1>
-            <p>Review your halwa selections</p>
-        </div>
-    </section>
-
-    <section class="cart-section">
-        <div class="container">
-            
-            <div id="cart-content" class="ecommerce-features">
-                <h2>Your Shopping Cart</h2>
-                <div id="cart-items-container" class="cart-items">
-                    <!-- Dynamic cart items go here -->
+                <div id="empty-cart-message" style="display: none; text-align: center; padding: 60px 0;">
+                    <h3>Your cart is empty</h3>
+                    <p>Add some delicious halwa to your cart!</p>
+                    <a href="products.html" class="btn">Browse Products</a>
                 </div>
                 
-                <div class="cart-summary">
-                    <h3>Total: <span id="cart-total">₹0</span></h3>
-                    <button id="checkout-btn" class="btn btn-full" style="margin-top: 20px;">Proceed to Checkout</button>
+                <div id="login-required-message" style="display: none; text-align: center; padding: 60px 0;">
+                    <h3>Please Login</h3>
+                    <p>You need to be logged in to view your cart.</p>
+                    <a href="auth.html" class="btn">Login</a>
                 </div>
             </div>
+        </section>
 
-            <div id="empty-cart-message" style="display: none; text-align: center; padding: 60px 0;">
-                <h3>Your cart is empty</h3>
-                <p>Add some delicious halwa to your cart!</p>
-                <a href="products.html" class="btn">Browse Products</a>
+        <footer>
+            <div class="container">
+                <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
             </div>
-            
-            <div id="login-required-message" style="display: none; text-align: center; padding: 60px 0;">
-                <h3>Please Login</h3>
-                <p>You need to be logged in to view your cart.</p>
-                <a href="auth.html" class="btn">Login</a>
-            </div>
-        </div>
-    </section>
+        </footer>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Halwa Delights. All rights reserved.</p>
-        </div>
-    </footer>
+        <button class="back-to-top" id="backToTop">↑</button>
+    </main>
 
-    <button class="back-to-top" id="backToTop">↑</button>
-    
     <script src="./js/script.js"></script>
     <script src="./js/cart.js"></script>
-</main>
+    <script type="module" src="./firebase/session.js"></script>
 </body>
 </html> 

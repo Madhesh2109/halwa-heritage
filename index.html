@@ -31,6 +31,9 @@
             <div class="header-right">
                 <a href="auth.html" class="btn-login">Login</a>
 
+                <!-- My Orders Link (Visible only after login) -->
+                <a href="my-orders.html" id="my-orders-link" class="btn-orders" style="display:none;">📦 My Orders</a>
+
                 <!-- Hidden until login -->
                 <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
 
@@ -38,6 +41,37 @@
                 <a id="cart-icon" class="cart-icon" href="cart.html">
                     🛒 <span class="cart-count">0</span>
                 </a>
+
+                <!-- Profile section -->
+                <div class="profile-wrapper" style="display:none; position:relative;">
+                    <button id="profile-btn" class="profile-btn" title="Profile">
+                        👤
+                    </button>
+
+                    <div class="profile-dropdown" id="profile-dropdown">
+                        <div class="profile-header">
+                            <h4 id="profile-title">My Profile</h4>
+                        </div>
+
+                        <div class="profile-content">
+                            <label>Name</label>
+                            <input id="profile-name" type="text" readonly />
+
+                            <label>Email</label>
+                            <input id="profile-email" type="text" readonly disabled />
+
+                            <label>Mobile</label>
+                            <input id="profile-mobile" type="text" readonly />
+
+                            <div class="profile-actions">
+                                <button id="edit-btn" class="profile-btn-action">Edit</button>
+                                <button id="update-btn" class="profile-btn-action" style="display:none;">Update</button>
+                                <button id="cancel-btn" class="profile-btn-action" style="display:none;">Cancel</button>
+                                <button id="change-email-btn" class="profile-btn-action">Change Email</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -171,9 +205,12 @@
     <!-- Back to top -->
     <button id="backToTop" class="back-to-top">↑</button>
 
+    <!-- Firebase App Initialization -->
+    <script type="module" src="./firebase/firebase-config.js"></script>
     <!-- JS Files -->
     <script src="js/cart.js"></script>
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="./firebase/session.js"></script>
 
 </body>
 </html>

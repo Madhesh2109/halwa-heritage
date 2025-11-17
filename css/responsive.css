@@ -318,3 +318,63 @@
     width: 40px;
   }
 }
+
+/* --- Responsive Profile icon Dropdown --- */
+
+/* Small screens (phones) */
+@media (max-width: 600px) {
+  .profile-wrapper {
+    position: static;
+  }
+
+  .profile-dropdown {
+    position: fixed;
+    right: 10px;
+    top: auto;
+    bottom: 60px; /* place it above footer or bottom nav */
+    width: 90%;
+    max-width: 340px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    border-radius: 16px;
+    padding: 18px;
+    z-index: 9999;
+  }
+
+  .profile-dropdown.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
+
+  .profile-header {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .profile-dropdown input {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .profile-btn-action {
+    font-size: 1rem;
+    padding: 8px;
+  }
+}
+
+/* Medium screens (tablets) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .profile-dropdown {
+    width: 260px;
+    right: 5px;
+  }
+
+  .profile-header {
+    font-size: 0.95rem;
+  }
+
+  .profile-btn-action {
+    padding: 7px;
+  }
+}

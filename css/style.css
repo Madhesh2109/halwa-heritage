@@ -175,7 +175,7 @@ header .container {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/halwa-banner.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)); /*url('../images/halwa-banner.jpg');*/
     background-size: cover;
     background-position: center;
     height: 80vh;
@@ -620,3 +620,115 @@ footer {
 }
 
 /* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* --- Profile Dropdown Styles (Final Animated Version) --- */
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #333;
+}
+
+/* animated dropdown */
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 42px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  width: 230px;
+  padding: 14px;
+  z-index: 999;
+  font-family: "Poppins", sans-serif;
+
+  /* animation setup */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+/* visible state */
+.profile-dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* form elements */
+.profile-dropdown input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.profile-dropdown label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.profile-header {
+  background: linear-gradient(90deg, #f77f00, #fcbf49);
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.profile-btn-action {
+  flex: 1;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #fff;
+  background: #2196f3;
+}
+
+.profile-btn-action.logout {
+  background: #e74c3c;
+}
+
+.profile-btn-action:hover {
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* My Orders Link in Header */
+.btn-orders {
+    background: #e67e22;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: background 0.3s ease;
+    margin-right: 10px;
+}
+
+.btn-orders:hover {
+    background: #c45c1a;
+    color: white;
+    text-decoration: none;
+}

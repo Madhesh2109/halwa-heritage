@@ -4,7 +4,7 @@
 
 .products {
     padding: 80px 0;
-    background: linear-gradient(to bottom, #FFF9F2, white);
+    background: linear-gradient(to bottom, #FFF9F2, #554533);
 }
 
 /* Filters */
@@ -127,19 +127,6 @@
     cursor: pointer;
 }
 
-/* ✅ Bulk Offer */
-.bulk-offer {
-    background: linear-gradient(135deg, #FFEBD6, #FFF3E0);
-    padding: 35px;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.bulk-offer h2 {
-    color: #C45C1A;
-}
-
 /* ✅ Combo Packs */
 .featured-combos {
     padding: 70px 0;
@@ -192,3 +179,22 @@
     object-fit: cover;
     border-radius: 10px;
 }
+
+.product-badge {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.product-badge:hover {
+    transform: scale(1.05);
+    filter: brightness(1.15);
+}
+

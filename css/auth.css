@@ -210,3 +210,107 @@ input:focus {
   color: #ff5500;
   text-decoration: underline;
 }
+
+/* ---------------------------------------------------------------------------------------------------------------------------------- */
+/* === Forgot Password Modal === */
+.reset-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.reset-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.reset-content h2 {
+  margin-bottom: 10px;
+  color: #f77f00;
+}
+
+.reset-content p {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.reset-content input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.reset-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.reset-actions button {
+  flex: 1;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#send-reset-btn {
+  background: #28a745;
+  color: white;
+}
+
+#close-reset-btn.cancel {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Inline message styles */
+.reset-message {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.reset-message.show {
+  opacity: 1;
+}
+
+.reset-message.success {
+  color: #28a745;
+}
+
+.reset-message.error {
+  color: #e74c3c;
+}

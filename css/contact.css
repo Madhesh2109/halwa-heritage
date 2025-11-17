@@ -1,4 +1,6 @@
-/* Contact Section */
+/* ============================================
+   CONTACT SECTION
+=============================================== */
 .contact {
     padding: 80px 0;
     background: linear-gradient(to bottom, #FFF9F2, white);
@@ -9,18 +11,21 @@
     gap: 50px;
 }
 
-.contact-info, .contact-form {
+.contact-info {
     flex: 1;
 }
 
-.contact-info h3, .contact-form h3 {
+/* Correct heading styling */
+.contact-info h3,
+.contact-feedback h3 {
     margin-bottom: 20px;
     color: #C45C1A;
     position: relative;
     display: inline-block;
 }
 
-.contact-info h3::after, .contact-form h3::after {
+.contact-info h3::after,
+.contact-feedback h3::after {
     content: '';
     position: absolute;
     bottom: -5px;
@@ -30,31 +35,9 @@
     background: linear-gradient(to right, #E67E22, transparent);
 }
 
-.contact-form form {
-    display: flex;
-    flex-direction: column;
-}
-
-.contact-form input, .contact-form textarea {
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 1px solid rgba(230, 126, 34, 0.3);
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.3s;
-    background-color: rgba(255, 255, 255, 0.7);
-}
-
-.contact-form input:focus, .contact-form textarea:focus {
-    outline: none;
-    border-color: #E67E22;
-    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
-}
-
-.contact-form button {
-    align-self: flex-start;
-}
-
+/* ============================================
+   SOCIAL LINKS
+=============================================== */
 .social-links {
     display: flex;
     gap: 15px;
@@ -70,23 +53,22 @@
 }
 
 .social-links a:hover {
-    text-decoration: none;
     background-color: rgba(230, 126, 34, 0.2);
     transform: translateY(-2px);
 }
 
-/* ================================
-   Contact Form Validation Styling
-   ================================ */
+/* ============================================
+   FORM VALIDATION TEXT
+=============================================== */
 .field-error {
     color: #e74c3c;
     font-size: 12px;
     margin-top: 5px;
 }
 
-/* ================================
-   Contact Form Notification Styling
-   ================================ */
+/* ============================================
+   FEEDBACK NOTIFICATION POPUP
+=============================================== */
 .contact-notification {
     position: fixed;
     top: 100px;
@@ -115,58 +97,62 @@
     transform: translateX(100%);
 }
 
-/* Optional smooth slide-in animation */
 @keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
-/* FEEDBACK SECTION STYLES */
+/* ============================================
+   FEEDBACK SECTION
+=============================================== */
 .contact-feedback {
     flex: 1;
 }
 
-.contact-feedback h3 {
-    margin-bottom: 20px;
-    color: #C45C1A;
-    position: relative;
-}
-
-.contact-feedback h3::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 50%;
-    height: 2px;
-    background: linear-gradient(to right, #E67E22, transparent);
-}
-
+/* ============================================
+   EMOJI RATING — SMOOTH (NO BOUNCE)
+=============================================== */
 .rating-box {
     display: flex;
-    gap: 10px;
-    font-size: 32px;
+    gap: 16px;
+    font-size: 40px;
     margin-bottom: 20px;
     cursor: pointer;
+    padding: 10px;
 }
 
 .star {
-    color: #ccc;
-    transition: color 0.3s, transform 0.2s;
+    opacity: 0.35;
+    transition: 
+        transform 0.18s ease,
+        opacity 0.18s ease,
+        filter 0.18s ease;
+    display: inline-block;
 }
 
-.star.active,
+/* Hover temporary highlight */
 .star:hover {
-    color: #E67E22;
-    transform: scale(1.2);
+    opacity: 1 !important;
+    transform: scale(1.25) !important;
+    filter: drop-shadow(0 0 5px rgba(255, 165, 0, 0.6)) !important;
 }
 
+/* Selected (permanent) */
+.star.active {
+    opacity: 1 !important;
+    transform: scale(1.3) !important;
+    filter: drop-shadow(0 0 7px rgba(255, 140, 0, 0.7)) !important;
+}
+
+/* Prevent flicker during fast movement */
+.rating-box:hover .star {
+    opacity: 0.35;
+    transform: scale(1);
+}
+
+/* ============================================
+   FEEDBACK TEXTAREA
+=============================================== */
 .feedback-text {
     width: 100%;
     margin-bottom: 20px;

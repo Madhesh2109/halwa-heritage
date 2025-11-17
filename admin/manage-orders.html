@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manage Orders — Admin</title>
+  <link rel="stylesheet" href="css/admin-style.css">
+  <link rel="stylesheet" href="css/orders-admin.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="brand"><h2>Halwa Admin</h2></div>
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html" class="nav-item">Dashboard</a>
+        <a href="manage-offers.html" class="nav-item">Manage Offers</a>
+        <a href="manage-popular.html" class="nav-item">Manage Popular</a>
+        <a href="manage-products.html" class="nav-item">Manage Products</a>
+        <a href="manage-feedbacks.html" class="nav-item">Manage Feedbacks</a>
+        <a href="manage-orders.html" class="nav-item active">Manage Orders</a>
+        <a href="#" id="openSite" class="nav-item">Open Site</a>
+        <a href="#" id="logoutBtn" class="nav-item danger">Logout</a>
+      </nav>
+      <div class="sidebar-footer muted">Signed in as <span id="adminEmail">—</span></div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Manage Orders</h1>
+        <div class="order-stats" id="orderStats">
+          <span class="stat-item">
+            <strong id="totalOrders">0</strong>
+            <span class="muted">Total</span>
+          </span>
+          <span class="stat-item">
+            <strong id="pendingOrders">0</strong>
+            <span class="muted">Pending</span>
+          </span>
+          <span class="stat-item">
+            <strong id="confirmedOrders">0</strong>
+            <span class="muted">Confirmed</span>
+          </span>
+          <span class="stat-item">
+            <strong id="shippedOrders">0</strong>
+            <span class="muted">Shipped</span>
+          </span>
+          <span class="stat-item">
+            <strong id="deliveredOrders">0</strong>
+            <span class="muted">Delivered</span>
+          </span>
+        </div>
+      </header>
+
+      <section class="admin-content">
+        <!-- Order Filters -->
+        <div class="card">
+          <div class="filter-bar">
+            <select id="statusFilter" class="filter-select">
+              <option value="all">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="shipped">Shipped</option>
+              <option value="delivered">Delivered</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <input type="text" id="searchOrders" placeholder="Search by order ID or customer..." class="filter-search">
+            <button id="refreshOrders" class="btn small">Refresh</button>
+          </div>
+        </div>
+
+        <!-- Orders List -->
+        <div class="card">
+          <h3>Orders List</h3>
+          <div id="ordersList" class="orders-list">
+            <p class="muted">Loading orders...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Order Details Modal -->
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Order Details</h3>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Order details will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/admin-auth.js"></script>
+  <script type="module" src="js/admin-firestore.js"></script>
+  <script type="module" src="js/orders-admin.js"></script>
+</body>
+</html>

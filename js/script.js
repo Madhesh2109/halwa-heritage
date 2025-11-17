@@ -1,152 +1,181 @@
-// Search Functionality
-document.addEventListener('DOMContentLoaded', function()
+// script.js (Firebase-integrated + auto-hide empty sections)
+import { db } from "../firebase/firebase-config.js";
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+
+document.addEventListener('DOMContentLoaded', async function () 
 {
-    // Image slider function
+    // ==========================================
+    // HERO IMAGE SLIDER
+    // ==========================================
     const slides = document.querySelectorAll('.hero-slider .slide');
     let current = 0;
 
-    function nextSlide()
+    // Only initialize slider if slides exist
+    if (slides.length > 0) 
     {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
+        function nextSlide()
+        {
+            // Add null check before accessing slides
+            if (slides[current])
+            {
+                slides[current].classList.remove('active');
+            }
+            current = (current + 1) % slides.length;
+            if (slides[current])
+            {
+                slides[current].classList.add('active');
+            }
+        }
+        // Start interval only if we have slides
+        setInterval(nextSlide, 4000);
+    }
+    else
+    {
+        console.log("No hero slides found - slider disabled");
     }
 
-    setInterval(nextSlide, 4000); // changes every 4 seconds
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //SIDE BAR WHEN DISPLAY SIZE REDUCES
+    // ==========================================
+    // SIDEBAR HANDLING
+    // ==========================================
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const closeSidebar = document.getElementById('close-sidebar');
     const overlay = document.getElementById('sidebar-overlay');
 
-    if (menuToggle && sidebar)
+    if (menuToggle && sidebar) 
     {
-        menuToggle.addEventListener('click', () =>
+        menuToggle.addEventListener('click', () => 
         {
             sidebar.classList.add('active');
             overlay.classList.add('active');
         });
     }
-
-    if (closeSidebar)
+    closeSidebar?.addEventListener('click', () => 
     {
-        closeSidebar.addEventListener('click', () =>
-        {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-    }
-    
-    // Close when clicking on overlay
-    if (overlay)
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+    overlay?.addEventListener('click', () => 
     {
-        overlay.addEventListener('click', () =>
-        {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-    }
-
-    // Close sidebar when resizing back to desktop
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    });
     window.addEventListener('resize', () =>
     {
-        if (window.innerWidth > 768)
+        if (window.innerWidth > 768) 
         {
             sidebar.classList.remove('active');
             overlay.classList.remove('active');
         }
     });
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    // Dynamic content for Offers Banner and Popular This Week
-    // Dummy data for now (later replaced with Firebase)
-    const offerData = {
-        enabled: true,
-        title: "🎉 Diwali Special Offers!",
-        description: "Get up to 20% OFF on premium halwa gift boxes. Limited-time festive offer!",
-        buttonText: "Shop Now",
-        buttonLink: "products.html"
-    };
+    // ==========================================
+    // FETCH OFFERS FROM FIRESTORE
+    // ==========================================
+    async function fetchOffers()
+    {
+        try
+        {
+            const querySnapshot = await getDocs(collection(db, "offers"));
+            if (querySnapshot.empty) return null;
 
-    const popularItems = [
-        {
-            name: "Tirunelveli Halwa",
-            desc: "Our most loved classic halwa of the week.",
-            image: "images/tirunelveli-halwa.png"
-        },
-        {
-            name: "Milk Halwa",
-            desc: "Soft, creamy and absolutely irresistible.",
-            image: "images/milk-halwa.jpg"
-        },
-        {
-            name: "Cashew Halwa",
-            desc: "Rich and nutty halwa made with premium cashews.",
-            image: "images/cashew-halwa.png"
+            const offers = querySnapshot.docs.map(doc => doc.data());
+            return offers.find(o => o.enabled === true) || offers[0];
         }
-    ];
+        catch (err)
+        {
+            console.error("Error fetching offers:", err);
+            return null;
+        }
+    }
 
-    // Render Offer Banner
-    function renderOfferBanner() {
+    async function renderOfferBanner() 
+    {
+        // Checking for banner
         const banner = document.getElementById("offerBanner");
-
-        if (!offerData.enabled) {
-            banner.style.display = "none";
+        if (!banner)
+        {
+            console.log("Offer banner element is not found on this page.");
             return;
         }
 
-        banner.innerHTML = `
-            <div class="container">
-                <h2>${offerData.title}</h2>
-                <p>${offerData.description}</p>
-                <a href="${offerData.buttonLink}" class="btn">${offerData.buttonText}</a>
-            </div>
-        `;
-    }
+        // Fetching offers
+        const offerData = await fetchOffers();
 
-    // Render Popular This Week
-    function renderPopularWeek() {
-        const container = document.getElementById("popularWeekContainer");
-        container.innerHTML = "";
-
-        popularItems.forEach(item => {
-            container.innerHTML += `
-                <div class="popular-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <h3>${item.name}</h3>
-                    <p>${item.desc}</p>
-                </div>
-            `;
-        });
-    }
-
-    renderOfferBanner();
-    renderPopularWeek();
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    // Back to Top Button
-    const backToTopBtn = document.getElementById('backToTop');
-    if (backToTopBtn)
-    {
-        window.addEventListener('scroll', function()
+        if (!offerData) 
         {
-            if (window.pageYOffset > 300)
-            {
-                backToTopBtn.style.display = 'block';
-            }
-            else
-            {
-                backToTopBtn.style.display = 'none';
-            }
-        });
+            banner.style.display = "none";
+            return;
+        }
         
-        backToTopBtn.addEventListener('click', function()
+        banner.innerHTML = `
+        <div class="container">
+            <h2>${offerData.title || "Special Offers!"}</h2>
+            <p>${offerData.description || ""}</p>
+            ${offerData.buttonLink ? `<a href="${offerData.buttonLink}" class="btn">${offerData.buttonText || "Shop Now"}</a>` : ""}
+        </div>
+        `;
+        banner.style.display = "block";
+    }
+
+    // ==========================================
+    // FETCH POPULAR ITEMS FROM FIRESTORE
+    // ==========================================
+    async function fetchPopularItems() 
+    {
+        try 
+        {
+            const querySnapshot = await getDocs(collection(db, "popular_week"));
+            return querySnapshot.docs.map(doc => doc.data());
+        } 
+        catch (err) 
+        {
+            console.error("Error fetching popular items:", err);
+            return [];
+        }
+    }
+
+    async function renderPopularWeek() 
+    {
+        const section = document.querySelector(".popular-week");
+        const container = document.getElementById("popularWeekContainer");
+        const items = await fetchPopularItems();
+
+        if (!items.length) 
+        {
+            section.style.display = "none";
+            return;
+        }
+
+        container.innerHTML = items.map(item => `
+            <div class="popular-item">
+                <img src="${item.image || 'images/default.jpg'}" alt="${item.name || 'Halwa'}">
+                <h3>${item.name || 'Unnamed Halwa'}</h3>
+                <p>${item.desc || ''}</p>
+            </div>
+        `).join('');
+        section.style.display = "block";
+    }
+
+    // ==========================================
+    // INITIALIZE DYNAMIC CONTENT
+    // ==========================================
+    await renderOfferBanner();
+    await renderPopularWeek();
+
+    // ==========================================
+    // BACK TO TOP BUTTON
+    // ==========================================
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) 
+    {
+        window.addEventListener('scroll', function () 
+        {
+            backToTopBtn.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+        });
+        backToTopBtn.addEventListener('click', function () 
         {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 });
-

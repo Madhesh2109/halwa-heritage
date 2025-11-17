@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manage Offers — Admin</title>
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="brand"><h2>Halwa Admin</h2></div>
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html" class="nav-item">Dashboard</a>
+        <a href="manage-offers.html" class="nav-item active">Manage Offers</a>
+        <a href="manage-popular.html" class="nav-item">Manage Popular</a>
+        <a href="manage-products.html" class="nav-item">Manage Products</a>
+        <a href="#" id="openSite" class="nav-item">Open Site</a>
+        <a href="#" id="logoutBtn" class="nav-item danger">Logout</a>
+      </nav>
+      <div class="sidebar-footer muted">Signed in as <span id="adminEmail">—</span></div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header"><h1>Manage Offers</h1></header>
+      <section class="admin-content">
+        <form id="offerForm" class="card form-card">
+          <h3 id="formTitle">Create Offer</h3>
+
+          <label><span>Title</span><input id="title" required /></label>
+          <label><span>Description</span><textarea id="description" rows="3"></textarea></label>
+          <label><span>Button Text</span><input id="buttonText" /></label>
+          <label><span>Button Link</span><input id="buttonLink" /></label>
+          <label class="row">
+            <span>Enabled</span>
+            <input id="enabled" type="checkbox" />
+          </label>
+
+          <div class="form-actions">
+            <button id="saveOffer" class="btn">Save</button>
+            <button id="cancelEdit" class="btn ghost" type="button" style="display:none;">Cancel</button>
+          </div>
+          <p id="formMsg" class="muted"></p>
+        </form>
+
+        <div class="card">
+          <h3>Existing Offers</h3>
+          <div id="offersList" class="list"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="js/admin-auth.js"></script>
+  <script type="module" src="js/admin-firestore.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

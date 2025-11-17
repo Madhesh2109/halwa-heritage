@@ -1,6 +1,9 @@
 // products.js — Dynamic Filter + Sort + Badges + Recently Viewed + Add to Cart (Final)
 
-document.addEventListener("DOMContentLoaded", () => {
+import { getProducts } from "../firebase/firestore.js";
+
+document.addEventListener("DOMContentLoaded", () =>
+{
   const sortFilter = document.querySelector("#sortFilter");
   const priceFilter = document.querySelector("#priceFilter");
   const resetFilters = document.querySelector("#resetFilters");
@@ -17,12 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "Moong Dal Halwa": "Trending",
     "Fruit Halwa": "",
     "Muscoth Halwa": "New",
-  };
-
-  const bulkOfferData = {
-    enabled: true,
-    title: "🎁 Bulk Order Discounts",
-    description: "Get 10% OFF on orders above ₹500. Perfect for weddings & festivals!",
   };
 
   const comboPacks = [
@@ -232,19 +229,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ============================================
-     ✅ Bulk Offer
-     ============================================ */
-  function renderBulkOffer() {
-    const box = document.getElementById("bulkOfferSection");
-    if (!box) return;
-    if (!bulkOfferData.enabled) {
-      box.style.display = "none";
-      return;
-    }
-    box.innerHTML = `<h2>${bulkOfferData.title}</h2><p>${bulkOfferData.description}</p>`;
-  }
-
-  /* ============================================
      ✅ Events
      ============================================ */
   sortFilter?.addEventListener("change", applyFilters);
@@ -257,13 +241,92 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ============================================
+   ✅ Apply Badges (after Firestore render)
+   ============================================ */
+  function applyBadges() 
+  {
+    const badgeColors = 
+    {
+      "Best Seller": "linear-gradient(135deg, #a93226, #e74c3c)",  // Deep red
+      "Popular": "linear-gradient(135deg, #117864, #1abc9c)",      // Emerald green
+      "Premium": "linear-gradient(135deg, #7d6608, #f7dc6f)",      // Gold
+      "Trending": "linear-gradient(135deg, #c0392b, #f39c12)",     // Red-orange
+      "New": "linear-gradient(135deg, #1e8449, #27ae60)",          // Fresh green
+      "": "linear-gradient(135deg, #7f8c8d, #95a5a6)"              // Neutral grey
+    };
+    document.querySelectorAll(".product-card").forEach((card) => 
+    {
+      const name = card.querySelector("h3")?.innerText?.trim() || "";
+      const badgeText = productBadges[name] || "";
+      const badge = card.querySelector(".product-badge");
+
+      if (badgeText && badge) 
+      {
+        badge.innerText = badgeText;
+        badge.style.display = "inline-block";
+        badge.dataset.type = badgeText;
+
+        const bg = badgeColors[badgeText] || badgeColors[""];
+        badge.style.background = bg;
+
+        badge.style.color = "#fff";
+        badge.style.padding = "4px 8px";
+        badge.style.borderRadius = "8px";
+        badge.style.fontSize = "0.8rem";
+        badge.style.fontWeight = "600";
+        badge.style.position = "absolute";
+        badge.style.top = "10px";
+        badge.style.left = "10px";
+        badge.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.15)";
+        badge.style.transition = "transform 0.3s ease, background 0.3s ease";
+      }
+    });
+  }
+
+  /* ============================================
+   ✅ Fetch Products from Firestore (merge with static)
+   ============================================ */
+  async function initializeProductsFromFirestore()
+  {
+    try
+    {
+      const snapshot = await getProducts();
+
+      const fetched = snapshot.map((p, index) => (
+      {
+        id: allProducts.length + index + 1, // continue after static ones
+        name: p.name,
+        description: p.description,
+        image: p.image,
+        price: Number(p.price),
+        badge: p.badge || "", // allow Firestore to set custom badges
+      }));
+
+      // Merge static + Firestore products
+      allProducts = [...allProducts, ...fetched];
+
+      // Render everything (badges + filters still work)
+      renderFilteredProducts(allProducts);
+
+      // ✅ Re-apply badge styles AFTER rendering
+      applyBadges();
+
+    }
+    catch (err)
+    {
+      console.error("⚠️ Firestore fetch failed:", err);
+    }
+  }
+
+  /* ============================================
      🚀 Init
      ============================================ */
-  initializeProductsFromHTML();
+  initializeProductsFromHTML();       // Load static HTML products first
+  initializeProductsFromFirestore();  // Then load from Firestore and merge
+  
   updateCartCount();
   renderRecentlyViewed();
   renderCombos();
-  renderBulkOffer();
   // Ensure initial badge-accurate render (optional): keep DOM order, but harmonize markup if needed
   // renderFilteredProducts(allProducts);
 });

@@ -1,59 +1,80 @@
-// contact.js – Feedback Section Version
+// contact.js – Feedback Section Version with Firebase
+import { db } from "../firebase/firebase-config.js";
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     initStarRating();
     initFeedbackSubmit();
 });
 
-// ===============================
-// STAR RATING FUNCTIONALITY
-// ===============================
-let rating = 0;
+// ========================================================
+// EMOJI RATING — Hover temporary, Click permanent
+// ========================================================
+let rating = 0; // Permanent rating
 
 function initStarRating() {
     const stars = document.querySelectorAll(".star");
+    const ratingBox = document.querySelector(".rating-box");
 
+    // Temporary highlight while hovering
+    ratingBox.addEventListener("mousemove", (event) => {
+        if (event.target.classList.contains("star")) {
+            let tempValue = parseInt(event.target.dataset.value);
+            fillTempRating(tempValue);
+        }
+    });
+
+    // Reset when leaving box
+    ratingBox.addEventListener("mouseleave", () => {
+        fillTempRating(0);        // clear all
+        fillPermanentRating();    // show clicked rating
+    });
+
+    // Click to set permanent rating
     stars.forEach(star => {
-        star.addEventListener("mouseenter", () => {
-            highlightStars(star.dataset.value);
-        });
-
         star.addEventListener("click", () => {
-            rating = star.dataset.value;
-            highlightStars(rating);
-        });
-
-        star.addEventListener("mouseleave", () => {
-            highlightStars(rating);
+            rating = parseInt(star.dataset.value);
+            fillPermanentRating();
         });
     });
 }
 
-function highlightStars(limit) {
+function fillTempRating(limit) {
     const stars = document.querySelectorAll(".star");
+
     stars.forEach(star => {
         star.classList.remove("active");
-        if (star.dataset.value <= limit) {
+        if (parseInt(star.dataset.value) <= limit) {
             star.classList.add("active");
         }
     });
 }
 
-// ===============================
-// FEEDBACK SUBMISSION
-// ===============================
+function fillPermanentRating() {
+    const stars = document.querySelectorAll(".star");
+
+    stars.forEach(star => {
+        star.classList.remove("active");
+        if (parseInt(star.dataset.value) <= rating) {
+            star.classList.add("active");
+        }
+    });
+}
+
+// ========================================================
+// FEEDBACK SUBMISSION TO FIREBASE
+// ========================================================
 function initFeedbackSubmit() {
     const btn = document.getElementById("submitFeedback");
     const textarea = document.querySelector(".feedback-text");
 
-    btn.addEventListener("click", () => {
-        // Rating check
+    btn.addEventListener("click", async () => {
+
         if (rating === 0) {
             showNotification("Please select a rating.", "error");
             return;
         }
 
-        // Text check
         if (textarea.value.trim() === "") {
             showNotification("Please write your feedback.", "error");
             return;
@@ -62,25 +83,33 @@ function initFeedbackSubmit() {
         btn.textContent = "Sending...";
         btn.disabled = true;
 
-        // Simulated backend delay
-        setTimeout(() => {
+        try {
+            await addDoc(collection(db, "feedbacks"), {
+                rating: rating,
+                message: textarea.value.trim(),
+                createdAt: serverTimestamp(),
+                status: "new"
+            });
+
             showNotification("Thank you! Your feedback has been submitted.", "success");
 
-            // Reset UI
             textarea.value = "";
             rating = 0;
-            highlightStars(0);
+            fillPermanentRating();
 
+        } catch (error) {
+            console.error("Error submitting feedback:", error);
+            showNotification("Error submitting feedback. Please try again.", "error");
+        } finally {
             btn.textContent = "Submit Feedback";
             btn.disabled = false;
-
-        }, 1500);
+        }
     });
 }
 
-// ===============================
+// ========================================================
 // NOTIFICATION POPUP
-// ===============================
+// ========================================================
 function showNotification(message, type) {
     const notification = document.createElement("div");
     notification.classList.add("contact-notification", type);
@@ -88,7 +117,6 @@ function showNotification(message, type) {
 
     document.body.appendChild(notification);
 
-    // Remove after 3 seconds
     setTimeout(() => {
         notification.classList.add("hide");
         setTimeout(() => notification.remove(), 300);

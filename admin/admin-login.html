@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Login — Halwa Heritage</title>
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body class="admin-auth-body">
+  <main class="auth-card">
+    <h1>Halwa Admin</h1>
+    <p class="muted">Sign in with your admin account</p>
+
+    <form id="loginForm" class="form">
+      <label>
+        <span>Email</span>
+        <input id="email" type="email" required />
+      </label>
+
+      <label>
+        <span>Password</span>
+        <input id="password" type="password" required minlength="6" />
+      </label>
+
+      <button id="loginBtn" type="submit" class="btn">Sign in</button>
+
+      <p id="err" class="error" role="alert"></p>
+    </form>
+
+    <p class="small muted">You must be an admin user. If you are not, request admin access in Firebase Console.</p>
+  </main>
+
+  <script type="module" src="js/admin-auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Dashboard — Halwa Heritage</title>
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="brand">
+        <h2>Halwa Admin</h2>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html" class="nav-item active" data-page="dashboard">Dashboard</a>
+        <a href="manage-offers.html" class="nav-item" data-page="offers">Manage Offers</a>
+        <a href="manage-popular.html" class="nav-item" data-page="popular">Manage Popular</a>
+        <a href="manage-products.html" class="nav-item" data-page="products">Manage Products</a>
+        <a href="manage-orders.html" class="nav-item" data-page="orders">Manage Orders</a>
+        <a href="manage-feedbacks.html" class="nav-item" data-page="feedbacks">Manage Feedbacks</a>
+        <a href="#" id="openSite" class="nav-item">Open Site</a>
+        <a href="#" id="logoutBtn" class="nav-item danger">Logout</a>
+      </nav>
+
+      <div class="sidebar-footer muted">Signed in as <span id="adminEmail">—</span></div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Dashboard</h1>
+      </header>
+
+      <section class="admin-content">
+        <div class="grid">
+          <div class="card">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="manage-offers.html">Manage Offers</a></li>
+              <li><a href="manage-popular.html">Manage Popular Items</a></li>
+              <li><a href="manage-products.html">Manage Products</a></li>
+              <li><a href="manage-orders.html">Manage Orders</a></li>
+              <li><a href="manage-feedbacks.html">Manage Feedbacks</a></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Live Preview</h3>
+            <div id="livePreview" class="preview">Loading preview...</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="js/admin-auth.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

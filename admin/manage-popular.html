@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manage Popular Items — Admin</title>
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="brand"><h2>Halwa Admin</h2></div>
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html" class="nav-item">Dashboard</a>
+        <a href="manage-offers.html" class="nav-item">Manage Offers</a>
+        <a href="manage-popular.html" class="nav-item active">Manage Popular</a>
+        <a href="manage-products.html" class="nav-item">Manage Products</a>
+        <a href="#" id="openSite" class="nav-item">Open Site</a>
+        <a href="#" id="logoutBtn" class="nav-item danger">Logout</a>
+      </nav>
+      <div class="sidebar-footer muted">Signed in as <span id="adminEmail">—</span></div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header"><h1>Manage Popular Items</h1></header>
+      <section class="admin-content">
+        <form id="popularForm" class="card form-card">
+          <h3 id="popFormTitle">Add Popular Item</h3>
+
+          <label><span>Name</span><input id="p_name" required /></label>
+          <label><span>Description</span><textarea id="p_desc" rows="2"></textarea></label>
+
+          <label><span>Image</span>
+            <input id="p_image_file" type="file" accept="image/*">
+          </label>
+
+          <img id="p_image_preview" class="preview-img" style="display:none; margin-top:10px; border-radius:8px; max-height:80px;">
+
+          <input id="p_image" type="hidden">
+
+          <div class="form-actions">
+            <button id="savePopular" class="btn">Save</button>
+            <button id="cancelPopEdit" class="btn ghost" type="button" style="display:none;">Cancel</button>
+          </div>
+          <p id="popFormMsg" class="muted"></p>
+        </form>
+
+        <div class="card">
+          <h3>Existing Popular Items</h3>
+          <div id="popularList" class="list"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="js/admin-auth.js"></script>
+  <script type="module" src="js/admin-firestore.js"></script>
+  <script type="module" src="js/storage-helper.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

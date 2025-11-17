@@ -1,14 +1,17 @@
 // about.js - Functional version (FAQ + scroll animation)
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => 
+{
     initializeFAQ();
     animateOnScroll();
 });
 
-function initializeFAQ() {
+function initializeFAQ() 
+{
     const faqItems = document.querySelectorAll('.faq-item');
 
-    faqItems.forEach(item => {
+    faqItems.forEach(item => 
+    {
         const question = item.querySelector('.faq-question');
         const answer = item.querySelector('.faq-answer');
         const toggleIcon = item.querySelector('.toggle-icon');
@@ -16,7 +19,8 @@ function initializeFAQ() {
         // Hide all answers initially
         answer.style.display = 'none';
 
-        question.addEventListener('click', () => {
+        question.addEventListener('click', () => 
+        {
             const isOpen = answer.style.display === 'block';
 
             // Close all other FAQs
@@ -55,8 +59,10 @@ function initializeFAQ() {
     }
 }
 
-function animateOnScroll() {
-    const observerOptions = {
+function animateOnScroll()
+{
+    const observerOptions = 
+    {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };

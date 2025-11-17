@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manage Feedbacks — Admin</title>
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="brand"><h2>Halwa Admin</h2></div>
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html" class="nav-item">Dashboard</a>
+        <a href="manage-offers.html" class="nav-item">Manage Offers</a>
+        <a href="manage-popular.html" class="nav-item">Manage Popular</a>
+        <a href="manage-products.html" class="nav-item">Manage Products</a>
+        <a href="manage-feedbacks.html" class="nav-item active">Manage Feedbacks</a>
+        <a href="#" id="openSite" class="nav-item">Open Site</a>
+        <a href="#" id="logoutBtn" class="nav-item danger">Logout</a>
+      </nav>
+      <div class="sidebar-footer muted">Signed in as <span id="adminEmail">—</span></div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Manage Feedbacks</h1>
+        <div class="small muted" id="feedbackStats">Loading...</div>
+      </header>
+
+      <section class="admin-content">
+        <!-- Positive Feedbacks (4-5 stars) -->
+        <div class="card">
+          <h3 style="color: #27ae60;">⭐ Positive Feedbacks (4-5 Stars)</h3>
+          <div id="positiveFeedbacks" class="list">
+            <p class="muted">Loading positive feedbacks...</p>
+          </div>
+        </div>
+
+        <!-- Neutral Feedbacks (3 stars) -->
+        <div class="card">
+          <h3 style="color: #f39c12;">⭐ Neutral Feedbacks (3 Stars)</h3>
+          <div id="neutralFeedbacks" class="list">
+            <p class="muted">Loading neutral feedbacks...</p>
+          </div>
+        </div>
+
+        <!-- Negative Feedbacks (1-2 stars) -->
+        <div class="card">
+          <h3 style="color: #e74c3c;">⭐ Negative Feedbacks (1-2 Stars)</h3>
+          <div id="negativeFeedbacks" class="list">
+            <p class="muted">Loading negative feedbacks...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="js/admin-auth.js"></script>
+  <script type="module" src="js/admin-firestore.js"></script>
+  <script type="module" src="js/feedbacks-admin.js"></script>
+</body>
+</html>

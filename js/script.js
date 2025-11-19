@@ -139,8 +139,11 @@ document.addEventListener('DOMContentLoaded', async function ()
     {
         const section = document.querySelector(".popular-week");
         const container = document.getElementById("popularWeekContainer");
-        const items = await fetchPopularItems();
+        
+        // ⬅️ SAFETY CHECK — prevents the error
+        if (!section || !container) return;
 
+        const items = await fetchPopularItems();
         if (!items.length) 
         {
             section.style.display = "none";

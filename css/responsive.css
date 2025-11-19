@@ -1,64 +1,128 @@
 /* =========================================
-   RESPONSIVE DESIGN SYSTEM – HALWA KADAI
-   Author: Madhesh G
-   Description: Centralized responsive layout
-   covering all pages (Home, Products, Cart,
-   Checkout, Confirmation, Contact, Auth, About)
+   HALWA DELIGHTS – RESPONSIVE STYLES
+   All responsive behavior is centralized here.
    ========================================= */
+
+/* ------------------------------
+   GLOBAL TWEAKS (ALL SMALL SCREENS)
+   ------------------------------ */
+@media (max-width: 992px) {
+
+  /* Layout container */
+  .container {
+    width: 94%;
+  }
+
+  /* Slightly reduce large headings */
+  .page-hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .header-content h2 {
+    font-size: 2.4rem;
+  }
+
+  .featured h2,
+  .popular-week h2 {
+    font-size: 2.1rem;
+  }
+}
 
 /* ===========================
    TABLET & MOBILE  (<= 768px)
    =========================== */
-@media (max-width: 768px)
-{
+@media (max-width: 768px) {
 
-  /* ===========================
-     🧭 HEADER & NAVIGATION
-     =========================== */
+  /* ------------------------------
+     HEADER & NAVIGATION
+     ------------------------------ */
   header .container {
-    flex-direction: column;
+    padding: 10px 0;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
   }
 
-  .search-bar {
-    margin: 10px 0;
-    width: 100%;
-    justify-content: center;
+  .header-flex {
+    flex-direction: row;
+    align-items: center;
   }
 
-  #searchInput {
-    width: 100%;
+  .logo h1 {
+    font-size: 1.4rem;
   }
 
-  /* ===========================
-     🎯 HERO & PAGE HERO SECTIONS
-     =========================== */
+  .header-right {
+    gap: 10px;
+  }
+
+  /* Show hamburger, hide main menu (use sidebar instead) */
+  .menu-toggle {
+    display: block;
+    margin-left: 8px;
+  }
+
+  .main-menu {
+    display: none;
+  }
+
+  /* Prevent content from hiding behind fixed header */
+  .hero {
+    margin-top: 90px;
+  }
+
+  .page-hero {
+    margin-top: 90px;
+    padding: 70px 0 40px;
+  }
+
+  /* Cart icon & buttons a bit tighter */
+  .btn-login,
+  .btn-logout,
+  .btn-orders {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .cart-icon {
+    font-size: 1rem;
+  }
+
+  /* ------------------------------
+     HERO (HOME)
+     ------------------------------ */
   .hero {
     height: auto;
-    padding: 60px 20px;
+    padding: 70px 20px;
     text-align: center;
+  }
+
+  .header-content {
+    width: 100%;
   }
 
   .header-content h2 {
     font-size: 2rem;
   }
 
+  .header-content p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
   .hero-buttons {
     flex-direction: column;
-    align-items: center;
+    gap: 10px;
   }
 
-  .page-hero {
-    padding: 60px 0 30px;
-  }
-
-  /* ===========================
-     ⚙️ GLOBAL LAYOUT ADJUSTMENTS
-     =========================== */
+  /* ------------------------------
+     GLOBAL SECTIONS
+     ------------------------------ */
   .container {
     width: 95%;
-    padding: 0 10px;
+  }
+
+  .featured {
+    padding: 60px 0;
   }
 
   .featured-grid {
@@ -66,119 +130,204 @@
   }
 
   .featured-item {
-    max-width: 90%;
-    margin: 0 auto;
+    max-width: 100%;
   }
 
-  /* ===========================
-     🧍 ABOUT & CONTACT PAGES
-     =========================== */
-  .about-grid,
-  .contact-content {
+  .popular-week {
+    padding: 50px 0;
+  }
+
+  .popular-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Back to top button smaller */
+  .back-to-top {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  /* ------------------------------
+     ABOUT PAGE
+     ------------------------------ */
+  .about-content {
+    padding: 50px 0;
+  }
+
+  .about-grid {
+    display: flex;
     flex-direction: column;
     gap: 30px;
   }
 
-  .about-image img,
-  .contact-info,
-  .contact-form {
+  .about-text,
+  .about-image {
     width: 100%;
+  }
+
+  .image-placeholder {
     height: auto;
+    max-height: 320px;
   }
 
+  /* ------------------------------
+     CONTACT PAGE
+     ------------------------------ */
   .contact {
-    padding: 40px 0;
+    padding: 60px 0;
   }
 
-  /* ===========================
-     🛍️ PRODUCT PAGE
-     =========================== */
-  .filter-options {
+  .contact-content {
+    display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
+  }
+
+  .contact-info,
+  .contact-feedback {
+    width: 100%;
+  }
+
+  .social-links {
+    flex-wrap: wrap;
+  }
+
+  .rating-box {
+    justify-content: space-between;
+  }
+
+  /* ------------------------------
+     PRODUCTS PAGE
+     ------------------------------ */
+  .product-filters {
+    margin-bottom: 25px;
+    text-align: left;
+  }
+
+  .filter-options {
+    display: flex;
+    flex-direction: column;
     align-items: stretch;
+    gap: 10px;
+  }
+
+  .filter-options select {
+    width: 100%;
+  }
+
+  .products {
+    padding: 60px 0;
   }
 
   .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
   }
 
   .product-card {
-    margin: 0 auto;
-    max-width: 320px;
+    max-width: 100%;
   }
 
-  /* ===========================
-     🛒 CART PAGE
-     =========================== */
+  .product-image {
+    height: 190px;
+  }
+
+  .featured-combos {
+    padding: 50px 0;
+  }
+
+  .combo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recently-viewed {
+    padding: 40px 0;
+  }
+
+  .recent-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* ------------------------------
+     CART PAGE
+     ------------------------------ */
+  .cart-section {
+    padding: 60px 0;
+  }
+
   .cart-item {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
   }
 
   .cart-item-info {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    gap: 15px;
   }
 
-  .cart-item img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+  .cart-item-img {
+    width: 80px;
+    height: 80px;
   }
 
   .cart-summary {
     text-align: center;
-    padding: 15px;
+    margin-top: 10px;
   }
 
   #checkout-btn {
     width: 100%;
   }
 
-  /* ===========================
-     📦 CHECKOUT PAGE
-     =========================== */
+  /* ------------------------------
+     CHECKOUT PAGE
+     ------------------------------ */
+  .checkout-section {
+    padding: 60px 0;
+  }
+
   .checkout-container {
     flex-direction: column;
+    gap: 20px;
   }
 
-  .coupon-section {
-    flex-direction: column;
-    gap: 10px;
+  .checkout-left,
+  .checkout-right {
+    min-width: 100%;
   }
 
-  .coupon-section input,
-  .coupon-section button {
+  .place-order-btn {
     width: 100%;
   }
 
-  #place-order-btn {
-    width: 100%;
+  /* ------------------------------
+     ORDER CONFIRMATION PAGE
+     ------------------------------ */
+  .confirmation-content {
+    max-width: 95%;
   }
 
-  /* ===========================
-     🚚 SHIPPING & CONFIRMATION
-     =========================== */
-  #shipping-form,
-  .shipping-info,
-  .confirmation-steps {
-    width: 100%;
+  .confirmation-card {
+    border-radius: 12px;
   }
 
   .confirmation-steps {
-    flex-direction: column;
-    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
   .confirmation-steps::before {
-    left: 5%;
-    right: 5%;
+    display: none;
   }
 
   .confirmation-steps .step {
-    max-width: 80px;
+    flex: 0 0 calc(50% - 20px);
+    max-width: none;
   }
 
   .confirmation-header {
@@ -186,127 +335,285 @@
   }
 
   .confirmation-header h2 {
-    font-size: 1.5em;
+    font-size: 1.6rem;
+  }
+
+  .delivery-info-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .delivery-icon {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .order-details,
+  .shipping-info,
+  .order-items-summary,
+  .order-status-simple,
+  .confirmation-actions,
+  .support-info {
+    padding: 20px;
   }
 
   .detail-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 5px;
+    gap: 4px;
+  }
+
+  .confirmation-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 
   .confirmation-actions {
     flex-direction: column;
+    gap: 10px;
   }
 
-  .steps-timeline {
-    padding-left: 20px;
+  .confirmation-actions .btn {
+    width: 100%;
   }
 
-  .step-indicator {
-    width: 20px;
-    height: 20px;
-    margin-right: 15px;
+  /* ------------------------------
+     MY ORDERS PAGE
+     ------------------------------ */
+  .orders-section {
+    padding: 50px 0;
   }
 
-  /* ===========================
-     🔐 AUTH (LOGIN / REGISTER)
-     =========================== */
+  .orders-filter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .order-header {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .order-meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .order-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .order-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .order-actions .btn-outline {
+    width: auto;
+  }
+
+  .modal-content {
+    width: 94%;
+    margin: 8% auto;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .item-info {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* ------------------------------
+     AUTH (LOGIN / REGISTER)
+     ------------------------------ */
+  .auth-section {
+    padding: 40px 10px;
+    min-height: 100vh;
+  }
+
   .auth-container {
     flex-direction: column;
+    width: 100%;
+    max-width: 420px;
   }
 
   .auth-image-container {
     order: -1;
-    background: #ffe9c7;
+    padding: 20px;
+  }
+
+  .auth-image {
+    max-width: 240px;
   }
 
   .auth-form-container {
-    padding: 40px 30px;
+    padding: 30px 24px;
   }
 
-  /* ===========================
-     🦶 FOOTER & UTILITIES
-     =========================== */
+  .form-options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  #register-form .form-group-inline {
+    flex-direction: column;
+  }
+
+  .reset-content {
+    width: 90%;
+  }
+
+  /* ------------------------------
+     PROFILE DROPDOWN (HEADER)
+     ------------------------------ */
+  .profile-wrapper {
+    position: static;
+  }
+
+  .profile-dropdown {
+    right: 8px;
+    top: 42px;
+    width: 230px;
+  }
+
+  /* ------------------------------
+     FOOTER
+     ------------------------------ */
   footer {
     padding: 20px 10px;
     font-size: 0.9rem;
-    text-align: center;
-  }
-
-  .back-to-top {
-    bottom: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
-  }
-
-  /* ===== Show hamburger only on small screens ===== */
-  .menu-toggle {
-    display: block;
-    margin-left: 10px;
-  }
-
-  .main-menu {
-    display: none;
-  }
-
-  header .container {
-    justify-content: space-between;
-  }
-
-  .header-right {
-    gap: 10px;
   }
 }
 
 /* ===========================
-   SMALL DEVICES  (<= 480px)
+   SMALL DEVICES  (<= 600px)
+   =========================== */
+@media (max-width: 600px) {
+
+  /* Profile dropdown becomes centered modal-like */
+  .profile-wrapper {
+    position: static;
+  }
+
+  .profile-dropdown {
+    position: fixed;
+    left: 50%;
+    right: auto;
+    top: auto;
+    bottom: 70px;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 340px;
+    border-radius: 14px;
+    padding: 16px;
+    z-index: 2000;
+  }
+
+  .profile-dropdown.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .profile-header {
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  .profile-dropdown input {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .profile-btn-action {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  /* Product / recent grids to single column */
+  .product-grid,
+  .recent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recent-card img {
+    height: 150px;
+  }
+
+  /* Rating emoji slightly smaller */
+  .rating-box {
+    font-size: 32px;
+  }
+
+  /* Modal */
+  .modal-content {
+    width: 92%;
+    margin: 12% auto;
+  }
+}
+
+/* ===========================
+   EXTRA SMALL DEVICES (<= 480px)
    =========================== */
 @media (max-width: 480px) {
 
-  /* 🔤 Global Font Scaling */
   body {
     font-size: 14px;
   }
 
   h1, h2, h3 {
-    font-size: 1.2em;
+    font-size: 1.1rem;
   }
 
-  /* 🎯 Hero Adjustments */
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+
+  .header-content h2 {
+    font-size: 1.7rem;
+  }
+
+  .page-hero h1 {
+    font-size: 1.7rem;
+  }
+
   .hero {
-    padding: 40px 15px;
+    padding: 50px 14px;
   }
 
-  /* 🛍️ Product Cards */
-  .product-card {
-    max-width: 90%;
-  }
-
-  /* 📦 Checkout Summary */
-  .confirmation-card,
-  .checkout-summary {
-    padding: 20px;
-  }
-
-  /* 💬 Modals */
-  .modal-content {
-    width: 90% !important;
-  }
-
-  /* 🔘 Buttons */
-  .btn, .btn-full {
+  .btn,
+  .btn-full {
     width: 100%;
+    text-align: center;
   }
 
-  /* 🛒 Cart Fine-Tuning */
-  .cart-item-details h3 {
-    font-size: 1rem;
+  .cart-item-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-item-img {
+    width: 100%;
+    max-width: 220px;
   }
 
   .quantity-control {
-    gap: 5px;
+    gap: 6px;
   }
 
   .quantity-btn {
@@ -317,64 +624,28 @@
   .quantity-input {
     width: 40px;
   }
-}
 
-/* --- Responsive Profile icon Dropdown --- */
-
-/* Small screens (phones) */
-@media (max-width: 600px) {
-  .profile-wrapper {
-    position: static;
+  .confirmation-steps .step {
+    flex: 0 0 100%;
   }
 
-  .profile-dropdown {
-    position: fixed;
-    right: 10px;
-    top: auto;
-    bottom: 60px; /* place it above footer or bottom nav */
-    width: 90%;
-    max-width: 340px;
-    left: 50%;
-    transform: translate(-50%, 20px);
-    border-radius: 16px;
-    padding: 18px;
-    z-index: 9999;
+  .detail-row {
+    align-items: flex-start;
   }
 
-  .profile-dropdown.show {
-    opacity: 1;
-    transform: translate(-50%, 0);
-    pointer-events: auto;
+  .confirmation-item {
+    align-items: flex-start;
   }
 
-  .profile-header {
-    font-size: 1rem;
-    padding: 10px;
+  .orders-section {
+    padding: 40px 0;
   }
 
-  .profile-dropdown input {
-    font-size: 1rem;
-    padding: 10px;
+  .auth-container {
+    max-width: 100%;
   }
 
-  .profile-btn-action {
-    font-size: 1rem;
-    padding: 8px;
-  }
-}
-
-/* Medium screens (tablets) */
-@media (min-width: 601px) and (max-width: 900px) {
-  .profile-dropdown {
-    width: 260px;
-    right: 5px;
-  }
-
-  .profile-header {
-    font-size: 0.95rem;
-  }
-
-  .profile-btn-action {
-    padding: 7px;
+  .auth-form-container {
+    padding: 24px 16px;
   }
 }

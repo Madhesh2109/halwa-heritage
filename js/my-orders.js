@@ -11,64 +11,77 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 
 const auth = getAuth();
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Check authentication and load orders
-    onAuthStateChanged(auth, async (user) => {
-        if (user) {
-            // User is logged in - show My Orders link
-            document.getElementById('my-orders-link').style.display = 'inline-block';
-            await loadUserOrders(user.email);
-        } else {
-            // User not logged in - redirect to login
-            window.location.href = 'auth.html';
-        }
-    });
-
-    setupEventListeners();
+document.addEventListener("DOMContentLoaded", () => 
+{
+  // Check authentication and load orders
+  onAuthStateChanged(auth, async (user) => 
+  {
+    if (user)
+    {
+      // User is logged in - show My Orders link
+      document.getElementById('my-orders-link').style.display = 'inline-block';
+      await loadUserOrders(user.uid);
+    }
+    else 
+    {
+      // User not logged in - redirect to login
+      window.location.href = 'auth.html';
+    }
+  });
+  setupEventListeners();
 });
 
 let userOrders = [];
 
-async function loadUserOrders(userEmail) {
-    const ordersContainer = document.getElementById('ordersContainer');
-    const noOrdersMessage = document.getElementById('noOrdersMessage');
+async function loadUserOrders(userId) 
+{
+  const ordersContainer = document.getElementById('ordersContainer');
+  const noOrdersMessage = document.getElementById('noOrdersMessage');
     
-    try {
-        ordersContainer.innerHTML = '<div class="loading-spinner">Loading your orders...</div>';
-        noOrdersMessage.style.display = 'none';
+  try 
+  {
+    ordersContainer.innerHTML = '<div class="loading-spinner">Loading your orders...</div>';
+    noOrdersMessage.style.display = 'none';
 
-        // Query orders for this user
-        const ordersQuery = query(
-            collection(db, "orders"),
-            where("customer.email", "==", userEmail),
-            orderBy("createdAt", "desc")
-        );
+    // Query orders for this user
+    const ordersQuery = query
+    (
+      collection(db, "orders"),
+      where("customerId", "==", userId),
+      orderBy("createdAt", "desc")
+    );
 
-        const querySnapshot = await getDocs(ordersQuery);
-        userOrders = [];
+    const querySnapshot = await getDocs(ordersQuery);
+    userOrders = [];
         
-        querySnapshot.forEach((doc) => {
-            const orderData = doc.data();
-            userOrders.push({
-                id: doc.id,
-                ...orderData,
-                createdAt: orderData.createdAt?.toDate() || new Date()
-            });
-        });
+    querySnapshot.forEach((doc) => 
+    {
+      const orderData = doc.data();
+      userOrders.push(
+      {
+        id: doc.id,
+        ...orderData,
+        createdAt: orderData.createdAt?.toDate() || new Date()
+      });
+    });
 
-        if (userOrders.length === 0) {
-            ordersContainer.style.display = 'none';
-            noOrdersMessage.style.display = 'block';
-        } else {
-            ordersContainer.style.display = 'block';
-            noOrdersMessage.style.display = 'none';
-            displayOrders(userOrders);
-        }
-
-    } catch (error) {
-        console.error("Error loading orders:", error);
-        ordersContainer.innerHTML = '<div class="error-message">Error loading orders. Please try again.</div>';
+    if (userOrders.length === 0) 
+    {
+      ordersContainer.style.display = 'none';
+      noOrdersMessage.style.display = 'block';
+    } 
+    else
+    {
+      ordersContainer.style.display = 'block';
+      noOrdersMessage.style.display = 'none';
+      displayOrders(userOrders);
     }
+  } 
+  catch (error) 
+  {
+    console.error("Error loading orders:", error);
+    ordersContainer.innerHTML = '<div class="error-message">Error loading orders. Please try again.</div>';
+  }
 }
 
 function displayOrders(orders) {
@@ -123,7 +136,7 @@ function setupEventListeners() {
     document.getElementById('refreshOrders').addEventListener('click', async () => {
         const user = auth.currentUser;
         if (user) {
-            await loadUserOrders(user.email);
+            await loadUserOrders(user.uid);
         }
     });
 
@@ -275,7 +288,7 @@ function showOrderDetails(order) {
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align: right; font-weight: bold;">Shipping:</td>
-                        <td style="font-weight: bold;">₹${order.shipping?.toFixed(2)}</td>
+                        <td style="font-weight: bold;">₹${order.shippingCost?.toFixed(2)}</td>
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align: right; font-weight: bold;">Total:</td>
@@ -290,7 +303,8 @@ function showOrderDetails(order) {
 }
 
 function reorderItems(order) {
-    if (order.items && order.items.length > 0) {
+    if (order.items && order.items.length > 0) 
+    {
         // Add items to cart
         const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
         order.items.forEach(item => {

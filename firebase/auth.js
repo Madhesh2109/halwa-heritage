@@ -24,7 +24,7 @@ export async function registerUser(username, mobile, email, password) {
     username,
     mobile,
     email,
-    createdAt: new Date()
+    createdAt: serverTimestamp()
   });
 
   return user;

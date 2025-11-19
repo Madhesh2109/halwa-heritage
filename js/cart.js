@@ -16,8 +16,12 @@ document.addEventListener("DOMContentLoaded", () =>
   // ============================
   // ✅ Render Cart Items
   // ============================
-  function renderCart() {
-    if (cart.length === 0) {
+  function renderCart() 
+  {
+    if (!cartContainer) return;
+
+    if (cart.length === 0) 
+    {
       cartContainer.innerHTML = "";
       emptyMessage.style.display = "block";
       if (loginMessage) loginMessage.style.display = "none";

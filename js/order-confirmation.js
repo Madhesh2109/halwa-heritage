@@ -5,7 +5,8 @@
 import { db } from "../firebase/firebase-config.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", async () => 
+{
   // ============================
   // 🔍 Get Order ID from URL
   // ============================
@@ -170,7 +171,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Update totals
     document.getElementById("confirmation-subtotal").textContent = `₹${order.subtotal?.toFixed(2) || '0.00'}`;
-    document.getElementById("confirmation-shipping").textContent = `₹${order.shipping?.toFixed(2) || '0.00'}`;
+    document.getElementById("confirmation-shipping").textContent = `₹${order.shippingCost?.toFixed(2) || '0.00'}`;
     document.getElementById("confirmation-total").textContent = `₹${order.total?.toFixed(2) || '0.00'}`;
 
     // Update status timeline

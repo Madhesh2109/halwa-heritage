@@ -4,8 +4,12 @@
 
 import { db } from "../firebase/firebase-config.js";
 import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => 
+{
+  const auth = getAuth();
+
   const orderSummary = document.getElementById("order-summary");
   const subtotalElement = document.getElementById("order-subtotal");
   const shippingElement = document.getElementById("order-shipping");
@@ -19,14 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email");
 
   let cart = [];
-  let shipping = 0;
+  let shippingCost = 0;
 
   // ============================
   // 🚚 REALISTIC SHIPPING RATES
   // ============================
-  const shippingRates = {
+  const shippingRates = 
+  {
     // 🏠 LOCAL DELIVERY (Free)
-    'tirunelveli_local': {
+    'tirunelveli_local': 
+    {
       cities: ['Tirunelveli', 'Palayamkottai', 'Tirunelveli Junction', 'Thachanallur'],
       rate: 0,
       delivery: '1-2 days'
@@ -161,12 +167,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Calculate shipping based on address
     const address = addressInput ? addressInput.value.trim() : '';
-    shipping = calculateShipping(address, subtotal);
+    shippingCost = calculateShipping(address, subtotal);
     
-    const total = subtotal + shipping;
+    const total = subtotal + shippingCost;
 
     subtotalElement.textContent = `₹${subtotal.toFixed(2)}`;
-    shippingElement.textContent = `₹${shipping.toFixed(2)}`;
+    shippingElement.textContent = `₹${shippingCost.toFixed(2)}`;
     totalElement.textContent = `₹${total.toFixed(2)}`;
 
     // Show free shipping message if applicable
@@ -362,8 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Recalculate shipping at order time
     const address = addressInput.value.trim();
-    shipping = calculateShipping(address, subtotal);
-    const total = subtotal + shipping;
+    shippingCost = calculateShipping(address, subtotal);
 
     // Disable button to prevent multiple clicks
     placeOrderBtn.disabled = true;
@@ -374,27 +379,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const state = extractStateFromAddress(address) || "Tamil Nadu";
     const pincode = extractPincodeFromAddress(address) || "627002";
 
-    const orderData = {
+    const orderData = 
+    {
+      customerId: auth.currentUser?.uid || null,
+
       customer: {
         name: fullNameInput.value.trim(),
         email: emailInput.value.trim(),
         phone: phoneInput.value.trim()
       },
+
       shipping: {
         address: address,
         city: city,
         state: state,
         pincode: pincode
       },
-      items: cart.map(item => ({
+
+      shippingCost: shippingCost,
+
+      items: cart.map(item => 
+      ({
         name: item.name,
         price: parseFloat(item.price) || 0,
         quantity: Number(item.quantity) || 1,
         image: item.image || ""
       })),
-      total: total,
+
       subtotal: subtotal,
-      shipping: shipping,
+      total: subtotal + shippingCost,
       paymentMethod: paymentInput.value,
       status: "pending",
       createdAt: serverTimestamp(),
@@ -403,7 +416,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     showToast("⏳ Placing your order...");
 
-    try {
+    try 
+    {
+      console.log("SHIPPING DEBUG:", address, city, state, pincode);
+
       // ✅ ACTUAL FIREBASE SAVE
       const orderRef = await addDoc(collection(db, "orders"), orderData);
       console.log("Order saved with ID: ", orderRef.id);

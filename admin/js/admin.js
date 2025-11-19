@@ -232,15 +232,19 @@ document.addEventListener("DOMContentLoaded", async () =>
   }
 
   // Dashboard live preview
-  if (document.getElementById("livePreview")) {
+  if (document.getElementById("livePreview")) 
+  {
     const lp = document.getElementById("livePreview");
-    try {
+    try 
+    {
       const offers = await FS.listOffers();
       const popular = await FS.listPopular();
       lp.innerHTML = `
         <div class="small muted">Offers: ${offers.length} · Popular items: ${popular.length}</div>
       `;
-    } catch (e) {
+    } 
+    catch (e) 
+    {
       lp.textContent = "Preview unavailable";
     }
   }

@@ -198,3 +198,35 @@
     filter: brightness(1.15);
 }
 
+/* ===========================
+   Toast Message (Add to Cart)
+   =========================== */
+.toast-message {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #27ae60;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    z-index: 9999;
+    opacity: 0;
+    animation: fadeInOut 2s ease forwards;
+}
+
+/* Smooth show + hide animation */
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px); }
+    15% { opacity: 1; transform: translateY(0); }
+    85% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(20px); }
+}
+
+/* For now I'm hiding this section. Later remove this if you wanna use Featured Combo Pack section */
+#featuredCombosSection {
+    display: none !important;
+}
+

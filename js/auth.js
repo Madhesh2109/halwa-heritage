@@ -4,7 +4,6 @@ import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebas
 
 document.addEventListener("DOMContentLoaded", () =>
 {
-
   // 🔒 Prevent all forms from doing default browser submission (no 405 error)
   document.querySelectorAll("form").forEach(form =>
   {
@@ -112,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () =>
     const email = document.getElementById("login-email");
     const password = document.getElementById("login-password");
     const rememberMe = document.querySelector(".remember-me input")?.checked;
+    const loader = document.getElementById("page-loader");
 
     let valid = true;
     if (!validateEmail(email.value.trim())) 
@@ -132,12 +132,18 @@ document.addEventListener("DOMContentLoaded", () =>
 
     try
     {
+      // SHOW LOADER
+      loader.style.display = "flex";
       const user = await loginUser(email.value.trim(), password.value.trim());
-      alert("Login successful!");
-      window.location.href = "index.html"; // redirect after login
+      // HIDE LOADER AFTER SOME SMOOTH DELAY
+      setTimeout(() => 
+      {
+        window.location.href = "index.html"; // redirect after login
+      }, 300);
     }
     catch (err)
     {
+      loader.style.display = "none"; // hide loader on error too
       console.error("Login error:", err);
       alert(err.message || "Error during login. Please try again.");
     }

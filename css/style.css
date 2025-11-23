@@ -162,15 +162,26 @@ header .container {
 }
 
 .btn-logout {
-    background: linear-gradient(135deg, #7F8C8D, #95A5A6);
-    color: white !important;
-    padding: 8px 16px;
-    border-radius: 20px;
+  background: #ffa24d;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .btn-logout:hover {
-    background: linear-gradient(135deg, #95A5A6, #7F8C8D);
-    transform: translateY(-2px);
+  background: #d90000;
+  transform: scale(1.1);
+}
+
+.btn-logout .material-symbols-outlined {
+  font-size: 26px;
+  color: white;
 }
 
 /* Hero Section */
@@ -261,7 +272,7 @@ header .container {
 /* Featured Section */
 .featured {
     padding: 80px 0;
-    background-color: #FFF9F2;
+    background: linear-gradient(to bottom, #FFF9F2, #554533);
 }
 
 .featured h2 {
@@ -575,7 +586,7 @@ footer {
 /* Popular This Week */
 .popular-week {
     padding: 70px 0;
-    background: #FFF9F2;
+    background: linear-gradient(to bottom, #FFF9F2, #554533);
 }
 
 .popular-week h2 {
@@ -622,95 +633,138 @@ footer {
 /* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 /* --- Profile Dropdown Styles (Final Animated Version) --- */
+/* ============================
+   PROFILE DROPDOWN – FULL CSS
+   ============================ */
+
+/* Wrapper */
 .profile-wrapper {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
+/* Profile Button */
 .profile-btn {
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: #333;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #333;
 }
 
-/* animated dropdown */
+/* Dropdown Box */
 .profile-dropdown {
-  position: absolute;
-  right: 0;
-  top: 42px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
-  width: 230px;
-  padding: 14px;
-  z-index: 999;
-  font-family: "Poppins", sans-serif;
+    position: absolute;
+    right: 0;
+    top: 42px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+    width: 260px;
+    padding: 16px;
+    z-index: 999;
 
-  /* animation setup */
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-  transition: all 0.25s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: 0.25s ease;
 }
 
-/* visible state */
+/* Visible state */
 .profile-dropdown.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
-/* form elements */
-.profile-dropdown input {
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 6px 8px;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
+/* ============================
+   TOP SECTION – NAME + EMAIL
+   ============================ */
+.profile-top-text {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.profile-dropdown label {
-  font-size: 0.85rem;
-  color: #666;
+.profile-top-text h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
 }
 
-.profile-header {
-  background: linear-gradient(90deg, #f77f00, #fcbf49);
-  color: white;
-  text-align: center;
-  border-radius: 8px;
-  padding: 6px;
-  margin-bottom: 10px;
+.profile-top-text p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #777;
 }
 
+/* Divider Line */
+.profile-divider {
+    height: 1px;
+    width: 100%;
+    background: #eee;
+    margin: 10px 0;
+}
+
+/* ============================
+   DETAILS SECTION (HIDDEN)
+   ============================ */
+.profile-content label,
+#profile-details label {
+    font-size: 0.8rem;
+    color: #444;
+    margin-top: 6px;
+    display: block;
+}
+
+.profile-content input,
+#profile-details input {
+    width: 100%;
+    border-radius: 8px;
+    padding: 7px 10px;
+    border: 1px solid #ccc;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+}
+
+/* ============================
+   ACTION BUTTONS
+   ============================ */
 .profile-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 6px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
 }
 
-.profile-btn-action {
-  flex: 1;
-  border: none;
-  padding: 6px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: #fff;
-  background: #2196f3;
+.action-btn {
+    padding: 7px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: 0.2s ease;
+    color: white;
 }
 
-.profile-btn-action.logout {
-  background: #e74c3c;
+.action-btn.primary {
+    background: #007bff;
 }
 
-.profile-btn-action:hover {
-  opacity: 0.9;
+.action-btn.success {
+    background: #28a745;
+}
+
+.action-btn.secondary {
+    background: #6c757d;
+}
+
+.action-btn.warning {
+    background: #f4a261;
+    grid-column: span 2;
+}
+
+.action-btn:hover {
+    opacity: 0.85;
 }
 
 /* --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */

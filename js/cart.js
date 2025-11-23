@@ -86,9 +86,14 @@ document.addEventListener("DOMContentLoaded", () =>
     totalElement.textContent = `₹${total.toFixed(2)}`;
   }
 
-  function updateCartCount() {
+  function updateCartCount() 
+  {
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
     if (cartCount) cartCount.textContent = count;
+
+    // Update in summary box
+    const rightCount = document.querySelector(".item-count");
+    if (rightCount) rightCount.textContent = count;
   }
 
   // ============================

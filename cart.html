@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="./css/responsive.css">
     <!-- Fav-icon -->
     <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" />
 </head>
 
 <body>
     <main>
-
         <!-- =========================================
          HEADER: LOGO + LOGIN + CART
          ========================================= -->
@@ -22,7 +22,7 @@
 
                 <!-- Logo -->
                 <div class="logo">
-                    <h1>Halwa Delights</h1>
+                    <h1>Halwa Heritage</h1>
                 </div>
 
                 <!-- Hamburger (visible only on mobile) -->
@@ -31,9 +31,6 @@
                 <!-- Right Side Buttons -->
                 <div class="header-right">
                     <a href="auth.html" class="btn-login">Login</a>
-
-                    <!-- Hidden until login -->
-                    <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
 
                     <!-- Cart -->
                     <a id="cart-icon" class="cart-icon" href="cart.html">
@@ -70,6 +67,10 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Hidden until login -->
+                    <button id="logout-btn" type="button" class="btn-logout" style="display:none;" title="Logout">
+                        <span class="material-symbols-outlined">power_settings_new</span>
+                    </button>
                 </div>
             </div>
         </header>
@@ -96,15 +97,23 @@
         <section class="cart-section">
             <div class="container">
                 
-                <div id="cart-content" class="ecommerce-features">
-                    <h2>Your Shopping Cart</h2>
-                    <div id="cart-items-container" class="cart-items">
-                        <!-- Dynamic cart items go here -->
+                <div class="cart-wrapper">
+
+                    <!-- LEFT SIDE: CART ITEMS -->
+                    <div class="cart-left">
+                        <h2>Your Shopping Cart</h2>
+                        <div id="cart-items-container" class="cart-items"></div>
                     </div>
-                    
-                    <div class="cart-summary">
-                        <h3>Total: <span id="cart-total">₹0</span></h3>
-                        <button id="checkout-btn" class="btn btn-full" style="margin-top: 20px;">Proceed to Checkout</button>
+
+                    <!-- RIGHT SIDE: SUMMARY BOX -->
+                    <div class="cart-right">
+                        <div class="summary-box">
+                            <p class="summary-text">Subtotal (<span class="item-count">0</span> items):</p>
+                            <h3 class="summary-total" id="cart-total">₹0</h3>
+                            <button id="checkout-btn" class="summary-btn">
+                                Proceed to Checkout
+                            </button>
+                        </div>
                     </div>
                 </div>
 

@@ -96,7 +96,8 @@ document.addEventListener("DOMContentLoaded", async () =>
       }
     });
 
-    cancelBtn.addEventListener("click", () => {
+    cancelBtn.addEventListener("click", () => 
+    {
       editingId = null;
       form.reset();
       document.getElementById("formTitle").textContent = "Create Offer";

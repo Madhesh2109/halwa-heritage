@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/confirmation.css">
     <link rel="stylesheet" href="./css/responsive.css">
     <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" />
 </head>
 
 <body data-protected="true">
@@ -21,7 +22,7 @@
 
                 <!-- Logo -->
                 <div class="logo">
-                    <h1>Halwa Delights</h1>
+                    <h1>Halwa Heritage</h1>
                 </div>
 
                 <!-- Hamburger (visible only on mobile) -->
@@ -30,9 +31,6 @@
                 <!-- Right Side Buttons -->
                 <div class="header-right">
                     <a href="auth.html" class="btn-login">Login</a>
-
-                    <!-- Hidden until login -->
-                    <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
 
                     <!-- Cart -->
                     <a id="cart-icon" class="cart-icon" href="cart.html">
@@ -69,6 +67,10 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Hidden until login -->
+                    <button id="logout-btn" type="button" class="btn-logout" style="display:none;" title="Logout">
+                        <span class="material-symbols-outlined">power_settings_new</span>
+                    </button>
                 </div>
             </div>
         </header>

@@ -27,6 +27,7 @@ const REQUIRE_AUTH = document.body.dataset.protected === "true";
 document.addEventListener("DOMContentLoaded", () => 
 {
     const loginBtn = document.querySelector(".btn-login");
+    
     const profileWrapper = document.querySelector(".profile-wrapper");
     const profileBtn = document.getElementById("profile-btn");
     const dropdown = document.getElementById("profile-dropdown");
@@ -36,6 +37,9 @@ document.addEventListener("DOMContentLoaded", () =>
     const editBtn = document.getElementById("edit-btn");
     const updateBtn = document.getElementById("update-btn");
     const cancelBtn = document.getElementById("cancel-btn");
+    const detailsSection = document.getElementById("profile-details");
+    const displaySection = document.querySelector(".profile-top-text");
+
     const logoutBtn = document.getElementById("logout-btn");
 
     async function checkAdminRole(user)
@@ -83,12 +87,20 @@ document.addEventListener("DOMContentLoaded", () =>
                     nameEl.value = data.username || "";
                     emailEl.value = data.email || user.email;
                     mobileEl.value = data.mobile || "";
+
+                    document.getElementById("profile-name-display").textContent = data.username || "";
+                    document.getElementById("profile-email-display").textContent = data.email || user.email;
+
                 }
                 else 
                 {
                     nameEl.value = "";
                     emailEl.value = user.email;
                     mobileEl.value = "";
+
+                    // NEW — fallback for display section
+                    document.getElementById("profile-name-display").textContent = "User";
+                    document.getElementById("profile-email-display").textContent = user.email;
                 }
             }
             catch (err)
@@ -144,8 +156,17 @@ document.addEventListener("DOMContentLoaded", () =>
     // --- Edit Mode ---
     editBtn?.addEventListener("click", () => 
     {
+        // Hide display section
+        displaySection.style.display = "none";
+
+        // Show input fields
+        detailsSection.style.display = "block";
+        
+        // Enable editing
         nameEl.readOnly = false;
         mobileEl.readOnly = false;
+        
+        // Button toggle
         editBtn.style.display = "none";
         updateBtn.style.display = "inline-block";
         cancelBtn.style.display = "inline-block";
@@ -154,8 +175,17 @@ document.addEventListener("DOMContentLoaded", () =>
     // --- Cancel Edit ---
     cancelBtn?.addEventListener("click", () =>
     {
+        // Disable editing
         nameEl.readOnly = true;
         mobileEl.readOnly = true;
+
+        // Hide edit fields
+        detailsSection.style.display = "none";
+
+        // Show static display section
+        displaySection.style.display = "block";
+
+        // Restore buttons
         editBtn.style.display = "inline-block";
         updateBtn.style.display = "none";
         cancelBtn.style.display = "none";
@@ -191,9 +221,20 @@ document.addEventListener("DOMContentLoaded", () =>
                 mobile: newMobile
             });
 
+            // 🔥 Update top display section instantly
+            document.getElementById("profile-name-display").textContent = newName;
+
             alert("Profile updated successfully!");
+
+            // 🔥 Disable fields again
             nameEl.readOnly = true;
             mobileEl.readOnly = true;
+
+            // 🔥 Hide details section, show display section
+            detailsSection.style.display = "none";
+            displaySection.style.display = "block";
+
+            // 🔥 Reset buttons
             editBtn.style.display = "inline-block";
             updateBtn.style.display = "none";
             cancelBtn.style.display = "none";

@@ -9,10 +9,10 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/tirunelveli-halwa-recipe-1.jpg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" />
 </head>
 
 <body>
-
     <!-- =========================================
          HEADER: LOGO + LOGIN + CART
          ========================================= -->
@@ -21,7 +21,7 @@
 
             <!-- Logo -->
             <div class="logo">
-                <h1>Halwa Delights</h1>
+                <h1>Halwa Heritage</h1>
             </div>
 
             <!-- Hamburger (visible only on mobile) -->
@@ -33,9 +33,6 @@
 
                 <!-- My Orders Link (Visible only after login) -->
                 <a href="my-orders.html" id="my-orders-link" class="btn-orders" style="display:none;">📦 My Orders</a>
-
-                <!-- Hidden until login -->
-                <a id="logout-btn" href="#" class="btn-logout" style="display:none;">Logout</a>
 
                 <!-- Cart -->
                 <a id="cart-icon" class="cart-icon" href="cart.html">
@@ -49,33 +46,54 @@
                     </button>
 
                     <div class="profile-dropdown" id="profile-dropdown">
-                        <div class="profile-header">
-                            <h4 id="profile-title">My Profile</h4>
+                        <!-- STATIC TOP USER INFO -->
+                        <div class="profile-top-text">
+                            <h4 id="profile-name-display">User Name</h4>
+                            <p id="profile-email-display">user@gmail.com</p>
                         </div>
 
-                        <div class="profile-content">
-                            <label>Name</label>
-                            <input id="profile-name" type="text" readonly />
+                        <div class="profile-divider"></div>
 
-                            <label>Email</label>
-                            <input id="profile-email" type="text" readonly disabled />
+                        <!-- DETAILS SECTION (HIDDEN BY DEFAULT) -->
+                        <div id="profile-details" style="display:none;">
+
+                            <label>Name</label>
+                            <input id="profile-name" type="text" />
 
                             <label>Mobile</label>
-                            <input id="profile-mobile" type="text" readonly />
+                            <input id="profile-mobile" type="text" />
 
-                            <div class="profile-actions">
-                                <button id="edit-btn" class="profile-btn-action">Edit</button>
-                                <button id="update-btn" class="profile-btn-action" style="display:none;">Update</button>
-                                <button id="cancel-btn" class="profile-btn-action" style="display:none;">Cancel</button>
-                                <button id="change-email-btn" class="profile-btn-action">Change Email</button>
-                            </div>
+                            <label>Email (Read-only)</label>
+                            <input id="profile-email" type="text" readonly disabled />
+                        </div>
+
+                        <div class="profile-divider"></div>
+
+                        <!-- ACTION BUTTONS -->
+                        <div class="profile-actions">
+                            <button id="edit-btn" class="action-btn primary">✏ Edit</button>
+
+                            <button id="update-btn" class="action-btn success" style="display:none;">
+                                ✔ Update
+                            </button>
+
+                            <button id="cancel-btn" class="action-btn secondary" style="display:none;">
+                                ✖ Cancel
+                            </button>
+
+                            <button id="change-email-btn" class="action-btn warning">
+                                📧 Change Email
+                            </button>
                         </div>
                     </div>
+                    <!-- Hidden until login -->
+                    <button id="logout-btn" type="button" class="btn-logout" style="display:none;" title="Logout">
+                        <span class="material-symbols-outlined">power_settings_new</span>
+                    </button>
                 </div>
             </div>
         </div>
     </header>
-
 
     <!-- =========================================
          MAIN MENU (Home, About, Products, Contact)
@@ -103,35 +121,28 @@
     <!-- Sidebar background overlay -->
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-
-
     <!-- =========================================
          HERO SECTION
          ========================================= -->
-<!-- =========================================
-     HERO SECTION
-     ========================================= -->
-<section class="hero">
-    <div class="hero-slider">
-        <div class="slide active" style="background-image: url('images/halwa1.jpeg');"></div>
-        <div class="slide" style="background-image: url('images/halwa2.jpeg');"></div>
-        <div class="slide" style="background-image: url('images/halwa3.jpeg');"></div>
-    </div>
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('images/halwa1.jpeg');"></div>
+            <div class="slide" style="background-image: url('images/halwa2.jpeg');"></div>
+            <div class="slide" style="background-image: url('images/halwa3.jpeg');"></div>
+        </div>
 
-    <div class="container">
-        <div class="header-content">
-            <h2>Authentic Halwa Made with Love</h2>
-            <p>Experience the taste of traditional homemade halwa, crafted with premium ingredients and generations of expertise.</p>
+        <div class="container">
+            <div class="header-content">
+                <h2>Authentic Halwa Made with Love</h2>
+                <p>Experience the taste of traditional homemade halwa, crafted with premium ingredients and generations of expertise.</p>
 
-            <div class="hero-buttons">
-                <a href="products.html" class="btn">View Products</a>
-                <a href="about.html" class="btn btn-secondary">Our Story</a>
+                <div class="hero-buttons">
+                    <a href="products.html" class="btn">View Products</a>
+                    <a href="about.html" class="btn btn-secondary">Our Story</a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-
+    </section>
 
     <!-- =========================================
          SPECIALTIES SECTION

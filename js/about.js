@@ -24,7 +24,8 @@ function initializeFAQ()
             const isOpen = answer.style.display === 'block';
 
             // Close all other FAQs
-            faqItems.forEach(otherItem => {
+            faqItems.forEach(otherItem => 
+            {
                 if (otherItem !== item) {
                     otherItem.querySelector('.faq-answer').style.display = 'none';
                     otherItem.querySelector('.toggle-icon').textContent = '+';
@@ -49,14 +50,6 @@ function initializeFAQ()
             }
         });
     });
-
-    // Open the first FAQ by default
-    if (faqItems.length > 0) {
-        const firstItem = faqItems[0];
-        firstItem.querySelector('.faq-answer').style.display = 'block';
-        firstItem.querySelector('.toggle-icon').textContent = '−';
-        firstItem.classList.add('active');
-    }
 }
 
 function animateOnScroll()
